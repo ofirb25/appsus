@@ -1,5 +1,6 @@
 import WelcomePage from './pages/WelcomePage.js';
 import NotesHomePage from './apps/keeper/pages/HomePage.js';
+import EmailDetails from './apps/emails/comps/EmailDetails.js';
 
 const routes = [
     {
@@ -18,11 +19,12 @@ const routes = [
         path: '/notes/:noteId/:action',
         component: NotesHomePage
     },
-
-<<<<<<< HEAD
-=======
+    {
+        path: '/mails/details/:mailId',
+        component: EmailDetails
+    }
     
->>>>>>> 33fb15040a7a34e246768b915d11563f2cdcc979
+    
 ]
 
 export default routes

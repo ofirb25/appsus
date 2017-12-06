@@ -1,3 +1,4 @@
+
 var mails = [
     {
         id: 100,
@@ -13,7 +14,7 @@ var mails = [
         title: 'How are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
-        time: Date.now(),
+        time: 1512574847800,
     },
     {
         id: 105,
@@ -91,8 +92,6 @@ function getMailIdx(mailId) {
     return mails.findIndex(mail => mail.id === mailId)
 }
 
-
-
 function _getNextId() {
     var maxId = mails.reduce((acc, note) => {
         return (note.id > acc) ? note.id : acc
@@ -101,3 +100,6 @@ function _getNextId() {
 };
 
 
+export default {
+    getMailById
+}

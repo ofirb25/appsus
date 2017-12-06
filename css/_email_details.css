@@ -1,0 +1,19 @@
+.details-trash {
+    background-color: rgb(204, 204, 204);
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s;
+    float: right;
+}
+
+.details-trash:hover {
+    background-color: rgb(255, 119, 119);
+    
+}
+.trash-container {
+    position: relative;
+    float: right;
+    bottom: 20px;
+}
