@@ -19,6 +19,10 @@ const routes = [
         component: NotesHomePage
     },
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 33fb15040a7a34e246768b915d11563f2cdcc979
 ]
 
 export default routes
