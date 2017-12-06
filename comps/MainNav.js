@@ -14,15 +14,15 @@ export default {
 
   <div id="main-nav" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/">
+      <router-link class="navbar-item" active-class="is-active" to="/" exact>
         Home
-      </a>
+      </router-link>
       <a class="navbar-item" href="/">
         Places
       </a>
-      <a class="navbar-item" href="/">
+      <router-link class="navbar-item" active-class="is-active" to="/notes">
         Notes
-      </a>
+      </router-link>
       <a class="navbar-item" href="/">
         Emails
       </a>
