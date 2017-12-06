@@ -1,4 +1,4 @@
-import EmailServices from '../emailservices/EmailServices.js';
+import MailService from '../mailservices/MailService.js';
 
 export default {
     template: `
@@ -10,11 +10,13 @@ export default {
         </header>
         <div class="card-content">
             <div class="content">
-                <img src="/assets/senders-pics/gal_gadot.png"/>>
-                <p>sent by: {{mail.sender}}</p>
+                 <div class="mail-avatar-wrapper">
+                    <img class="avatar-img" :src="mail.senderPic"> 
+                 </div>
+                <p>{{mail.sender}}</p>
                 <p>{{mail.text}}</p>
                 <br>
-                <p>{{mail.timeAgo}} ago</p>
+                <p>{{timeAgo}} </p>
                 <span @click="deleteMail(mail.id)" class="icon has-text-info trash-container">
                     <i class="fa fa-trash-o fa-lg details-trash"></i>
                 </span>
@@ -22,21 +24,23 @@ export default {
         </div>
     </div>
     `,
-    props: [],
+    props: {
+        mail: Object
+    },
     data() {
         return {
-            mail: null
+            timeAgo : null
         }
     },
+    updated () {
+        if(this.mail) this.timeAgo = moment(this.mail.time).fromNow()
+        
+    },
     created() {
-        EmailServices.getMailById(+this.$route.params.mailId).then(mail => {
-            this.mail = mail;
-            this.mail.timeAgo = moment(this.mail.time).fromNow(true);
-        })
     },
     methods: {
-        deleteMail(noteId) {
-            this.$emit('deleteNote', noteId)
+        deleteMail(mailId) {
+            this.$emit('deleteMail', mailId)
         }
     }
 

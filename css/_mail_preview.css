@@ -22,3 +22,11 @@
     font-weight: bold;
     background-color: white;
 }
+.preview-time {
+    font-size:0.7em;
+}
+
+.preview-container {
+    height:80vh;
+    overflow-y:scroll;
+}

@@ -17,12 +17,15 @@ export default {
     </div>
     <p class="panel-tabs">
         <a class="is-active">all</a>
-        <a>public</a>
-        <a>private</a>
+        <a>unRead {{countMails}}</a>
+        <a @click="sortList('time')">Newest First</a>
+        <a @click="sortList('title')">By Title</a>
         <a>sources</a>
         <a>forks</a>
     </p>
+    <div class="preview-container">
     <email-preview v-for="mail in mails" :mail="mail" @updateSelected="updateSelected"></email-preview>
+    </div>
     </div>
     </section>
     `
@@ -39,10 +42,22 @@ export default {
     },
     methods : {
         updateSelected(mailId) {
-            console.log('h');
-            console.log('mailid', mailId);
             this.selectedMailId = mailId
-            console.log('selected', this.selectedMailId);
+            this.$emit('updateSelected',mailId)
+        },
+        sortList(sortBy) {
+            if(sortBy === 'time') {
+                this.mails = MailService.sortByDate()
+            } else {
+                this.mails = MailService.sortByTitle()                
+            }
+        }
+    },
+    computed : {
+        countMails(){
+           return this.mails.reduce((acc,mail)=>{
+                return acc + !mail.isRead
+            },0)
         }
     },
     components : {

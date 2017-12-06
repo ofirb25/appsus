@@ -2,7 +2,7 @@ var mails = [
     {
         id: 100,
         sender: 'Gal Gadot',
-        senderPic : 'assets/senders-pics/gal_gadot.png',        
+        senderPic: 'assets/senders-pics/gal_gadot.png',
         title: 'How are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: true,
@@ -10,17 +10,17 @@ var mails = [
     },
     {
         id: 108,
-        sender: 'Beyonce',
-        senderPic : 'assets/senders-pics/gal_gadot.png',
-        title: 'How are you today?',
+        sender: 'Beyonce ',
+        senderPic: 'assets/senders-pics/gal_gadot.png',
+        title: 'How are you today? *OLDEST*',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
-        time: Date.now(),
+        time: 1512581088594
     },
     {
         id: 105,
         sender: 'Kim Kardashian',
-        senderPic : 'assets/senders-pics/gal_gadot.png',                
+        senderPic: 'assets/senders-pics/gal_gadot.png',
         title: 'How are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: true,
@@ -29,7 +29,7 @@ var mails = [
     {
         id: 101,
         sender: 'Johnny  Balaloe',
-        senderPic : 'assets/senders-pics/gal_gadot.png',                
+        senderPic: 'assets/senders-pics/gal_gadot.png',
         title: 'How is Are to  are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -38,7 +38,7 @@ var mails = [
     {
         id: 102,
         sender: 'Ricky Martin',
-        senderPic : 'assets/senders-pics/gal_gadot.png',                
+        senderPic: 'assets/senders-pics/gal_gadot.png',
         title: 'Vivin la vida loca??',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -47,7 +47,7 @@ var mails = [
     {
         id: 104,
         sender: 'Britney Spears',
-        senderPic : 'assets/senders-pics/gal_gadot.png',                
+        senderPic: 'assets/senders-pics/gal_gadot.png',
         title: 'Hit me baby one more time!!',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -89,8 +89,11 @@ function markRead(mailId) {
 
 function deleteMail(mailId) {
     var mailIdx = getMailIdx(mailId)
-    mails.splice(mailIdx, 1);
-    resolve(mails);
+    return new Promise ((resolve,reject)=>{
+        mails.splice(mailIdx, 1);
+        resolve(mails);
+    })
+   
 }
 
 function getMailIdx(mailId) {
@@ -104,10 +107,26 @@ function _getNextId() {
     return maxId + 1;
 };
 
+function sortByDate() {
+    return mails.sort((a, b) => {
+        return b.time - a.time
+    });
+};
+
+function sortByTitle() {
+    console.log()
+    return mails.sort((a, b) => {
+        if(a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) return -1
+        else return 1
+    })
+}
+
 export default {
     getMails,
     getMailById,
     deleteMail,
-    markRead
+    markRead,
+    sortByTitle,
+    sortByDate
 }
 
