@@ -1,7 +1,8 @@
 import WelcomePage from './pages/WelcomePage.js';
 import NotesHomePage from './apps/keeper/pages/HomePage.js';
-import EmailList from './apps/emails/comps/EmailList.js';
-import EmailDetails from './apps/emails/comps/EmailDetails.js';
+// import EmailList from './apps/emails/comps/EmailList.js';
+// import EmailDetails from './apps/emails/comps/EmailDetails.js';
+import EmailApp from './apps/emails/pages/EmailApp.js';
 
 const routes = [
     {
@@ -21,15 +22,13 @@ const routes = [
         component: NotesHomePage
     },
     {
-        path: '/test' ,
-        component: EmailList
+        path: '/mails' ,
+        component: EmailApp
     },
     {
-        path: '/mails/details/:mailId',
-        component: EmailDetails
-    }
-    
-    
+        path: '/mails/mail/:mailId' ,
+        component: EmailApp
+    }  
 ]
 
 export default routes

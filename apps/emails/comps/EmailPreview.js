@@ -9,6 +9,7 @@ template : `
         <div class="mail-content" >
         <div class="mail-title">
            {{mail.title}}
+           <span class="preview-time is-pulled-right">{{timeAgo}}</span>
         </div>
         <div class="mail-body">
             {{shortTxt}}
@@ -25,13 +26,16 @@ methods : {
 },
 data () {
     return {
-       
+       timeAgo : null
     }
 },
 computed : {
     shortTxt(){
         return this.mail.text.substring(0,120) + '...'
     }
+},
+created () {
+    this.timeAgo = moment().calendar(this.mail.time)
 },
 props : {
     mail : Object

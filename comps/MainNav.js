@@ -23,9 +23,9 @@ export default {
       <router-link class="navbar-item" active-class="is-active" to="/notes">
         Notes
       </router-link>
-      <a class="navbar-item" href="/">
-        Emails
-      </a>
+      <router-link class="navbar-item" active-class="is-active" to="/mails">
+      Emails
+    </router-link>
     </div>
 
     <div class="navbar-end">
