@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import MailService from '../mailServices/MailService.js';
-=======
 import MailService from '../mailservices/MailService.js';
->>>>>>> 4451e05eeb1477e05855429ad502324244e4e55a
 
 export default {
     template: `

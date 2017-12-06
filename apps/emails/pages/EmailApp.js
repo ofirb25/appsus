@@ -3,7 +3,7 @@ import EmailDetails from '../comps/EmailDetails.js';
 import EmailList from '../comps/EmailList.js'
 
 export default {
-    template : `
+    template: `
         <section>
         <div class="columns">
             <div class="column is-third">
@@ -19,38 +19,43 @@ export default {
         return {
             mails: [],
             selectedEmailId: null,
-            selectedMail : null
+            selectedMail: null
         }
     },
     created() {
-        if(this.$route.params.mailId) {
+        if (this.$route.params.mailId) {
             this.updateSelected(+this.$route.params.mailId)
         }
     },
     methods: {
         getMails() {
-            MailService.getMails().then(mails=>this.mails = mails);
+            MailService.getMails().then(mails => this.mails = mails);
         },
         updateSelected(mailId) {
             this.selectedEmailId = mailId
-            this.$router.push('/mails/mail/'+mailId);
+            this.$router.push('/mails/mail/' + mailId);
             MailService.getMailById(mailId)
-            .then(mail=> {this.selectedMail = mail
-                if(!mail.isRead) MailService.markRead(mailId)
-                console.log(mail)
-            });
+                .then(mail => {
+                this.selectedMail = mail
+                    if (!mail.isRead) MailService.markRead(mailId)
+                    console.log(mail)
+                });
         },
         deleteMail(mailId) {
-            console.log(mailId)
             MailService.deleteMail(mailId)
-            .then(mails=>{
-                console.log('deleted!');
-                this.selectedMail = null;
-                this.$router.push('/mails')
-            })
+                .then(mails => {
+                    swal(
+                        'Deleted!',
+                        'Your mail has been deleted.',
+                        'success'
+                    )
+                    console.log('deleted!');
+                    this.selectedMail = null;
+                    this.$router.push('/mails')
+                })
         }
     },
-    components : {
+    components: {
         EmailDetails,
         EmailList
     }

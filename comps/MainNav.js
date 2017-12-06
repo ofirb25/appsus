@@ -1,14 +1,19 @@
-export default { 
-  template : `
+export default {
+  template: `
 <nav class="navbar is-dark">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <img src="../assets/logo.png" alt="Apsus app" width="112" height="28">
     </a>
-    <div class="navbar-burger burger" data-target="main-nav">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div>
+        <input type="checkbox" id="nav-checkbox">
+      <label for="nav-checkbox" class="main-nav-icon is-pulled-right">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
     </div>
   </div>
 
@@ -34,4 +39,4 @@ export default {
   </div>
 </nav>
 `
- }
+}
