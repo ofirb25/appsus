@@ -1,4 +1,4 @@
-import EmailServices from '../emailservices/EmailServices.js';
+import MailService from '../mailServices/MailService.js';
 
 export default {
     template: `
@@ -10,7 +10,9 @@ export default {
         </header>
         <div class="card-content">
             <div class="content">
-                <img src="/assets/senders-pics/gal_gadot.png"/>>
+                <div class="mail-avatar-wrapper">
+                    <img class="avatar-img" :src="mail.senderPic"> 
+                </div>
                 <p>sent by: {{mail.sender}}</p>
                 <p>{{mail.text}}</p>
                 <br>
@@ -29,7 +31,7 @@ export default {
         }
     },
     created() {
-        EmailServices.getMailById(+this.$route.params.mailId).then(mail => {
+        MailService.getMailById(+this.$route.params.mailId).then(mail => {
             this.mail = mail;
             this.mail.timeAgo = moment(this.mail.time).fromNow(true);
         })

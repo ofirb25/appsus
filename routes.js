@@ -21,17 +21,15 @@ const routes = [
         component: NotesHomePage
     },
     {
-<<<<<<< HEAD
         path: '/test' ,
         component: EmailList
-    }
-=======
+    },
+    {
         path: '/mails/details/:mailId',
         component: EmailDetails
     }
     
     
->>>>>>> c7aea013bad15490e90f363e097015053ad01290
 ]
 
 export default routes
