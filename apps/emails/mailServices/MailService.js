@@ -1,15 +1,17 @@
 var mails = [
     {
         id: 100,
-        sender: 'John Doe',
+        sender: 'Gal Gadot',
+        senderPic : 'assets/senders-pics/gal_gadot.png',        
         title: 'How are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
-        isRead: false,
+        isRead: true,
         time: Date.now(),
     },
     {
         id: 108,
         sender: 'Beyonce',
+        senderPic : 'assets/senders-pics/gal_gadot.png',
         title: 'How are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -18,6 +20,7 @@ var mails = [
     {
         id: 105,
         sender: 'Kim Kardashian',
+        senderPic : 'assets/senders-pics/gal_gadot.png',                
         title: 'How are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: true,
@@ -26,6 +29,7 @@ var mails = [
     {
         id: 101,
         sender: 'Johnny  Balaloe',
+        senderPic : 'assets/senders-pics/gal_gadot.png',                
         title: 'How is Are to  are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -34,6 +38,7 @@ var mails = [
     {
         id: 102,
         sender: 'Ricky Martin',
+        senderPic : 'assets/senders-pics/gal_gadot.png',                
         title: 'Vivin la vida loca??',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -42,6 +47,7 @@ var mails = [
     {
         id: 104,
         sender: 'Britney Spears',
+        senderPic : 'assets/senders-pics/gal_gadot.png',                
         title: 'Hit me baby one more time!!',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -91,8 +97,6 @@ function getMailIdx(mailId) {
     return mails.findIndex(mail => mail.id === mailId)
 }
 
-
-
 function _getNextId() {
     var maxId = mails.reduce((acc, note) => {
         return (note.id > acc) ? note.id : acc
@@ -100,4 +104,10 @@ function _getNextId() {
     return maxId + 1;
 };
 
+export default {
+    getMails,
+    getMailById,
+    deleteMail,
+    markRead
+}
 

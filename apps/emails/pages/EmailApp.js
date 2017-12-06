@@ -1,4 +1,4 @@
-import EmailServices from '../emailServices/EmailServices.js'
+import MailService from '../emailServices/MailService.js'
 
 export default {
     template : `
@@ -15,7 +15,7 @@ export default {
     },
     methods: {
         getMails() {
-            MailsService.getMails().then(mails=>this.mails = mails);
+            MailService.getMails().then(mails=>this.mails = mails);
         },
     }
 }
