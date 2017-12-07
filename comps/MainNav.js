@@ -5,16 +5,17 @@ export default {
     <a class="navbar-item" href="/">
       <img src="../assets/logo.png" alt="Apsus app" width="112" height="28">
     </a>
-    <div>
-        <input type="checkbox" id="nav-checkbox">
-      <label for="nav-checkbox" class="main-nav-icon is-pulled-right">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
+    <div class="navbar-burger burger my-burger" data-target="main-nav">
+    <input type="checkbox" id="nav-checkbox">    
+    <label for="nav-checkbox" class="main-nav-icon is-pulled-right">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
 
     </div>
+
   </div>
 
   <div id="main-nav" class="navbar-menu">
