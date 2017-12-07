@@ -78,13 +78,12 @@ export default {
     methods: {
         saveNote() {
             NotesService.saveNote(this.note).then(res => {
-                console.log('saved!')
-                this.$router.push('/');
+                this.$router.push('/notes');
             })
             .catch(err => console.log('err', err))
         },
         closeModal() {
-          this.$router.push('/')
+          this.$router.push('/notes')
       }
     },
     created (){
