@@ -8,7 +8,7 @@ export default {
         <section>
             <new-note  v-if="onAddMode||onEditMode"></new-note>
             <note-details  v-if="showDetailsMode"></note-details>
-            <router-link v-if="!onAddMode" to="/notes/add" tag="button" class="add-note button is-success">
+            <router-link v-if="!onAddMode" to="/notes/add" tag="button" class="add-note button is-danger">
                 <span class="fa fa-plus"></span>
             </router-link>                                                
             <div class="controls">

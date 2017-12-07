@@ -13,7 +13,9 @@ export default {
                 </div>
                 <span v-if="!inputMode" class="tag is-rounded mail-to-tag" @click="ToggleInputMode">{{mailTo}}</span>
             </div>
-            <span tag="button" class="delete closeMail" aria-label="close"></span>
+            <router-link to="/mails">
+                <span tag="button" class="delete closeMail" aria-label="close"></span>
+            </router-link> 
         </header>
         <div class="card-content">
             <div class="content">
