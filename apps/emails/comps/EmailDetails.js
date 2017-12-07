@@ -7,7 +7,9 @@ export default {
         <p class="card-header-title">
             {{mail.title}}
         </p>
-        <span tag="button" class="delete closeMail" @click="closeDetails" aria-label="close"></span>
+        <router-link to="/mails">
+            <span tag="button" class="delete closeMail" aria-label="close"></span>        
+        </router-link>
         </header>
         <div class="card-content">
             <div class="content">
@@ -43,9 +45,6 @@ export default {
         deleteMail(mailId) {
             this.$emit('deleteMail', mailId)
         },
-        closeDetails() {
-            this.$emit('closeDetails')
-        }
     }
 
 }

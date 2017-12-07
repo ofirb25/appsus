@@ -6,28 +6,30 @@ import EmailCompose from '../comps/EmailCompose.js'
 export default {
     template: `
     <section>
-    <div class="columns">
-        <div class="column is-third">
-            <email-list :mails="mails" @updateSelected="updateSelected" 
-            @doSearch="doSearch" @sortList="sortList">
-            </email-list>
-        </div>
-        <div class="column">
+        <div class="columns">
+            <div class="column is-third">
+                <email-list :mails="mails" @updateSelected="updateSelected" 
+                @doSearch="doSearch" @sortList="sortList">
+                </email-list>
+            </div>
             <div class="column" v-if="showDetailsMode">
                 <transition name="custom-classes-transition"
-                 enter-active-class="animated fadeInDown" 
-                 leave-active-class="animated bounceOutRight">
+                enter-active-class="animated fadeInDown" 
+                leave-active-class="animated bounceOutRight">
                     <email-details v-if="selectedMail" :mail="selectedMail"
-                     @deleteMail="deleteMail" @closeDetails="closeDetails"></email-details>
+                    @deleteMail="deleteMail"></email-details>
                 </transition>
             </div>
             <div class="column" v-else-if="onAddMode">
                 <email-compose @sendMail="sendMail"></email-compose>
             </div>
-            <div class="column" v-else>
-            </div>
+            <div class="column" v-else></div>
         </div>
-</section>
+        <router-link v-if="!onAddMode" to="/mails/compose" tag="button" class="add-note button is-danger">
+            <span class="fa fa-plus"></span>
+        </router-link>                                                
+
+    </section>
     `,
     data() {
         return {
@@ -82,10 +84,6 @@ export default {
             } else {
                 this.getMails()
             }
-        },
-        closeDetails() {
-            this.selectedMail = null;
-            this.$router.push('/mails')
         },
         sendMail(mail) {
             MailService.saveMail(mail).then(res => {
