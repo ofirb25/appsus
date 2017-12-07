@@ -62,7 +62,7 @@ export default {
             MailService.deleteMail(mailId)
                 .then(mails => {
                     console.log('deleted!');
-                    setTimeout(() => { this.selectedMail = null }, 200);
+                    this.selectedMail = null 
                     this.$router.push('/mails');
                     this.getMails()
                     
