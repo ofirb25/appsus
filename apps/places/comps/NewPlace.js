@@ -2,7 +2,7 @@ import PlacesService from '../placesServices/PlacesService.js';
 
 export default {
   template: `
-  <div v-if="apiData" class="card place-details">
+  <div v-if="apiData.results" class="card place-details">
       <form @submit.prevent="savePlace">
       <div class="card-content">
         <span class="place-origin">{{apiData.results[0].formatted_address}}</span>          
@@ -54,38 +54,33 @@ export default {
             <button class="button is-link">Save</button>
           </div>
           <div class="control">
-            <button class="button is-text">Cancel</button>
+            <button @click.prevent="cancelPlace" class="button is-text">Cancel</button>
           </div>
         </div>
       </div>
       </form>
 </div>
 `, props: {
-    // data: Object,
+    apiData: Object,
     map: Object
 
   },
   data() {
     return {
-      apiData: null,
+      // apiData: null,
       userData: null
     }
   },
   methods: {
     savePlace(){
       this.$emit('savePlace',this.userData)
+    },
+    cancelPlace(){
+      this.$emit('cancelPlace')      
+      this.$router.push('/places');
     }
   },
   created() {
-    PlacesService.getLocation('tel aviv').then(data => {
-      this.apiData = data
-      var pos = {
-        lat: data.results[0].geometry.location.lat,
-        lng: data.results[0].geometry.location.lng
-      }
-      this.map.setCenter(pos);
-      this.userData = PlacesService.emptyPlace();
-      console.log(this.userData)
-    });
+          this.userData = PlacesService.emptyPlace();
   }
 }

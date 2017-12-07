@@ -17,7 +17,8 @@ export default {
             enter-active-class="animated slideInLeft"
             leave-active-class="animated slideOutLeft">
             <place-details v-if="showDetailsMode" :place="selectedPlace"></place-details>
-            <new-place @savePlace="savePlace" v-if="isAdding" :data="userNavigation" :map="map"></new-place>            
+            <new-place @cancelPlace="cancelPlace"  @savePlace="savePlace" v-if="isAdding && userNavigation" 
+            :apiData="userNavigation" :map="map"></new-place>            
             </transition>
             </div>
         </section>
@@ -60,7 +61,7 @@ export default {
             PlacesService.getLocation(query)
                 .then(data => {
                     this.userNavigation = data;
-                    console.log(data)
+                    console.log(this.userNavigation)
                     console.log(data.results[0].formatted_address)
                     var pos = {
                         lat: data.results[0].geometry.location.lat,
@@ -72,6 +73,7 @@ export default {
                         title: data.results[0].formatted_address
                     });
                     this.marker.setMap(this.map);
+                    this.$router.push('/places/add')
                 });
         },
         gotMap() {
@@ -79,7 +81,15 @@ export default {
             console.log(this.map)
         },
         savePlace(place){
-            PlacesService.savePlace(place).then(res=>{console.log('saved!')})
+            PlacesService.savePlace(place).then(res=>{console.log('saved!')});
+            this.$router.push('/places');
+        },
+        cancelPlace(){
+            console.log('marker',this.marker);
+            // this.marker.setMap(null);
+            // this.marker = null;
+            this.marker.setMap(null);
+            console.log(this.map)
         }
     },
     components: {
