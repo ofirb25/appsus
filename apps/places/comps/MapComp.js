@@ -12,6 +12,6 @@ export default {
     },
     mounted() {
         PlacesService.displayMap();
-        PlacesService.getLocation().then(res=>console.log(res))
+        PlacesService.getUserLocation().then(res=>console.log(res))
     }
 }

@@ -40,7 +40,12 @@ const routes = [
     {
         path: '/places/place/:placeId',
         component : PlacesApp
+    },
+    {
+        path: '/places/add',
+        component : PlacesApp
     }
+
 ]
 
 export default routes

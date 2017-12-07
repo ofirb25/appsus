@@ -82,11 +82,12 @@ function emptyPlace() {
     }
 }
 
+
 var gMap;
 function displayMap(locationObj) {
     // Create a map object and specify the DOM element for display.
     gMap = new google.maps.Map(document.querySelector('#map'), {
-        center: { lat: places[0].lat, lng: places[0].lng },
+        center: { lat:places[0].lat, lng: places[0].lng},
         zoom: 12
     });
     places.forEach(place => {
@@ -103,7 +104,7 @@ function displayMap(locationObj) {
     });
 }
 
-function getLocation() {
+function getUserLocation() {
     return new Promise((resolve, reject) => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
@@ -121,37 +122,33 @@ function getMarkerImg(placeTag) {
         fun : 'assets/marker-icons/fun.png}'
     }
 }
+function getLocation(query) {
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyB6ZAQiNEXagLdD5SAJNtDjWmItieR5uVQ`)
+        .then(res => res.json())
+        .then(function(data) {
+            var pos = {
+                lat : data.results[0].geometry.location.lat,
+                lng : data.results[0].geometry.location.lng    
+            }
+            gMap.setCenter(pos)
+            var marker = new google.maps.Marker({
+                position: pos,
+                title: query
+            });
+            marker.setMap(gMap);
+            return marker            
+        })
+}
+
 
 export default {
     getPlaces,
     getPlaceById,
     deletePlace,
-    searchPlace,
     emptyPlace,
     savePlace,
     displayMap,
+    getUserLocation,
     getLocation
 }
 
-
-
-
-
-
-function searchPlace(query) {
-    // if(!query.trim()) return Promise.resolve(mails)
-    // var results = []
-    // return new Promise((resolve, reject) => {
-    //     results = mails.filter(mail => {
-    //         return mail.title.toLowerCase().includes(query.toLowerCase()) ||
-    //             mail.text.toLowerCase().includes(query.toLowerCase()) ||
-    //             mail.sender.toLowerCase().includes(query.toLowerCase());
-    //     });
-    //     if (results.length) {
-    //         console.log('res', results);
-    //         resolve(results)
-    //     }
-    //     else reject([])
-    // })
-
-}
