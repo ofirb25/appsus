@@ -1,6 +1,7 @@
 import MailService from '../mailServices/MailService.js';
 import EmailDetails from '../comps/EmailDetails.js';
 import EmailList from '../comps/EmailList.js'
+import EmailCompose from '../comps/EmailCompose.js'
 
 export default {
     template: `
@@ -9,8 +10,13 @@ export default {
             <div class="column is-third">
                 <email-list @updateSelected="updateSelected"></email-list>
             </div>
-            <div class="column">
-                <email-details v-if="" :mail="selectedMail" @deleteMail="deleteMail"></email-details>
+            <div class="column" v-if="showDetailsMode">
+                <email-details :mail="selectedMail" @deleteMail="deleteMail" @closeDetails="closeDetails"></email-details>
+            </div>
+            <div class="column" v-else-if="onAddMode">
+                <email-compose @sendMail="sendMail"></email-compose>
+            </div>
+            <div class="column" v-else>
             </div>
         </div>
         </section>
@@ -36,7 +42,7 @@ export default {
             this.$router.push('/mails/mail/' + mailId);
             MailService.getMailById(mailId)
                 .then(mail => {
-                this.selectedMail = mail
+                    this.selectedMail = mail
                     if (!mail.isRead) MailService.markRead(mailId)
                     console.log(mail)
                 });
@@ -53,10 +59,35 @@ export default {
                     this.selectedMail = null;
                     this.$router.push('/mails')
                 })
+        },
+        closeDetails() {
+            this.selectedMail = null;
+            this.$router.push('/mails')
+        },
+        sendMail(mail) {
+            MailService.saveMail(mail).then(res => {
+                this.$router.push('/mails');
+            })
         }
+    },
+    computed: {
+        onAddMode() {
+            if (this.$route.params.action === 'compose') {
+                return true
+            }
+            return false
+        },
+        showDetailsMode() {
+            if (this.$route.params.mailId) {
+                return true
+            }
+            return false
+        }
+
     },
     components: {
         EmailDetails,
-        EmailList
+        EmailList,
+        EmailCompose
     }
 }
