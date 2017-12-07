@@ -6,3 +6,14 @@
     font-size:0.7em;
     background: white;
 }
+
+.details-selectors {
+    margin-top:5px;
+    font-size: 1.5em;
+    text-align: center
+}
+
+.details-selectors * {
+    margin-left: 10px;
+    cursor: pointer;
+}

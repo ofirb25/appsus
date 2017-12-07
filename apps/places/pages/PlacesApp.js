@@ -11,7 +11,13 @@ export default {
             <div class="comps">
             <search-place></search-place>
             <places-list :places="places"></places-list>
+            <transition
+            name="custom-classes-transition"
+            enter-active-class="animated slideInLeft"
+            leave-active-class="animated slideOutLeft">
+    
             <place-details v-if="showDetailsMode" :place="selectedPlace"></place-details>
+            </transition>
             </div>
         </section>
     `,
