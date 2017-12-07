@@ -3,12 +3,14 @@ import PlacesService from '../placesServices/PlacesService.js';
 export default {
   template: `
   <div v-if="apiData" class="card place-details">
-      <form @submit.prevent="savePlace">
+    <div class="card-image">
+
+  
+      </div>
       <div class="card-content">
-        <span class="place-origin">{{apiData.results[0].formatted_address}}</span>          
-        <div class="field">
-        <div class="control">
-            <input class="input" type="text" placeholder="Place Name" v-model="userData.name">
+        <div class="media">
+          <div class="media-left">
+         
           </div>
         </div>
         <div class="field">
@@ -22,7 +24,7 @@ export default {
           <label class="label">Category</label>          
         <p class="control has-icons-left">
           <span class="select">
-            <select v-model="userData.tag">
+            <select>
               <option value="fun" selected>Fun</option>
               <option value="food">Food</option>
               <option value="shopping">Shopping</option>
@@ -34,31 +36,12 @@ export default {
           </span>
         </p>
       </div>
-      <div class="field">
-          <div class="file is-boxed">
-              <label class="file-label">
-                <input class="file-input" type="file" name="resume">
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="fa fa-upload"></i>
-                  </span>
-                  <span class="file-label">
-                    Choose a file…
-                  </span>
-                </span>
-              </label>
-            </div>
-      </div>
-      <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Save</button>
-          </div>
-          <div class="control">
-            <button class="button is-text">Cancel</button>
-          </div>
+        <div class="content">
+   
+          <br>
+          
         </div>
       </div>
-      </form>
 </div>
 `, props: {
     // data: Object,
@@ -71,11 +54,6 @@ export default {
       userData: null
     }
   },
-  methods: {
-    savePlace(){
-      this.$emit('savePlace',this.userData)
-    }
-  },
   created() {
     PlacesService.getLocation('tel aviv').then(data => {
       this.apiData = data
@@ -86,6 +64,10 @@ export default {
       this.map.setCenter(pos);
       this.userData = PlacesService.emptyPlace();
       console.log(this.userData)
-    });
+    })
+    // console.log(this.data);
+    // this.userData = PlacesService.emptyPlace();
+
+    // console.log('ffff',userData)
   }
 }

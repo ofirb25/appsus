@@ -42,7 +42,7 @@ const routes = [
         component : PlacesApp
     },
     {
-        path: '/places/add',
+        path: '/places/:action',
         component : PlacesApp
     }
 

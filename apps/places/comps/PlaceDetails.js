@@ -45,6 +45,9 @@ export default {
       }
     },
     computed : {
-
-    }
+        isPlace(){
+          console.log(this.place)
+          return this.place !== null
+        }
+    },
 }

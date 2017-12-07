@@ -42,6 +42,10 @@ function getPlaceById(placeId) {
     });
 };
 
+function getMap() {
+    return gMap
+}
+
 function savePlace(place) {
     return new Promise((resolve, reject) => {
         place.id = _getNextId()
@@ -54,7 +58,7 @@ function deletePlace(placeId) {
     var placeIdx = getPlaceIdx(placeId)
     return new Promise((resolve, reject) => {
         places.splice(placeIdx, 1);
-        resolve(mails);
+        resolve(places);
     });
 }
 
@@ -63,8 +67,8 @@ function getPlaceIdx(placeId) {
 }
 
 function _getNextId() {
-    var maxId = mails.reduce((acc, place) => {
-        return (place.id > acc) ? note.id : acc
+    var maxId = places.reduce((acc, place) => {
+        return (place.id > acc) ? place.id : acc
     }, 0);
     return maxId + 1;
 };
@@ -72,13 +76,13 @@ function _getNextId() {
 
 function emptyPlace() {
     return {
-        id: 100,
-        name: 'Times Square',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
-        photos: [],
+        name: '',
+        description: '',
+        photos: ['https://bulma.io/images/placeholders/1280x960.png'],
         lat: '',
         lng: '',
-        tag: ''
+        tag: '',
+        tagIcon : 'assets/marker-icons/food.svg'
     }
 }
 
@@ -102,6 +106,7 @@ function displayMap(locationObj) {
             // this.$router.push('/places/place/'+place.id);
           });
     });
+
 }
 
 function getUserLocation() {
@@ -123,21 +128,9 @@ function getMarkerImg(placeTag) {
     }
 }
 function getLocation(query) {
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyB6ZAQiNEXagLdD5SAJNtDjWmItieR5uVQ`)
+    return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyB6ZAQiNEXagLdD5SAJNtDjWmItieR5uVQ`)
         .then(res => res.json())
-        .then(function(data) {
-            var pos = {
-                lat : data.results[0].geometry.location.lat,
-                lng : data.results[0].geometry.location.lng    
-            }
-            gMap.setCenter(pos)
-            var marker = new google.maps.Marker({
-                position: pos,
-                title: query
-            });
-            marker.setMap(gMap);
-            return marker            
-        })
+            .then(data => data)
 }
 
 
@@ -149,6 +142,7 @@ export default {
     savePlace,
     displayMap,
     getUserLocation,
-    getLocation
+    getLocation,
+    getMap
 }
 
