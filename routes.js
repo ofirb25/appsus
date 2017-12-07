@@ -1,8 +1,8 @@
 import WelcomePage from './pages/WelcomePage.js';
 import NotesHomePage from './apps/keeper/pages/HomePage.js';
-// import EmailList from './apps/emails/comps/EmailList.js';
-// import EmailDetails from './apps/emails/comps/EmailDetails.js';
 import EmailApp from './apps/emails/pages/EmailApp.js';
+import PlacesApp from './apps/places/pages/PlacesApp.js';
+
 
 const routes = [
     {
@@ -32,6 +32,14 @@ const routes = [
     {
         path: '/mails/:action',
         component: EmailApp
+    },
+    {
+        path: '/places',
+        component: PlacesApp
+    },
+    {
+        path: '/places/place/:placeId',
+        component : PlacesApp
     }
 ]
 

@@ -3,4 +3,7 @@
 @import '_nav.css';
 @import '_email_list.css';
 @import '_email_details.css';
+@import '_map_comp.css';
+@import '_places_list.css';
+@import '_place_details.css';
 @import '_new_mail.css';

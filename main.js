@@ -9,13 +9,18 @@ new Vue({
     template: `
         <section>
             <main-nav></main-nav>
-            <div class="container is-fluid">
+            <div  :class="{'is-fluid' : !isMaps,'container' : !isMaps}">
                 <router-view></router-view>
             </div>
         </section>
     `,
     components: {
         MainNav
+    },
+    computed : {
+        isMaps(){
+            return this.$route.path.includes('places')
+        }
     },
     router: myRouter
 }).$mount('#app')
