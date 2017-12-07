@@ -12,7 +12,6 @@ export default {
             @doSearch="doSearch" @sortList="sortList">
             </email-list>
         </div>
-        <div class="column">
             <div class="column" v-if="showDetailsMode">
                 <transition name="custom-classes-transition"
                  enter-active-class="animated fadeInDown" 

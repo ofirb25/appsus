@@ -1,0 +1,23 @@
+<section>
+    <div class="columns">
+        <div class="column is-third">
+            <email-list :mails="mails" @updateSelected="updateSelected" 
+            @doSearch="doSearch" @sortList="sortList">
+            </email-list>
+        </div>
+        <div class="column">
+            <div class="column" v-if="showDetailsMode">
+                <transition name="custom-classes-transition"
+                 enter-active-class="animated fadeInDown" 
+                 leave-active-class="animated bounceOutRight">
+                    <email-details v-if="selectedMail" :mail="selectedMail"
+                     @deleteMail="deleteMail" @closeDetails="closeDetails"></email-details>
+                </transition>
+            </div>
+            <div class="column" v-else-if="onAddMode">
+                <email-compose @sendMail="sendMail"></email-compose>
+            </div>
+            <div class="column" v-else>
+            </div>
+        </div>
+</section>

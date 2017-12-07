@@ -3,7 +3,7 @@ import EmailPreview from './EmailPreview.js'
 
 export default {
     template: `
-    <section class="panel">
+    <section class="mail-list panel">
     <p class="panel-heading">
         Emails
     </p>
@@ -16,11 +16,18 @@ export default {
             </span>
         </p>
     </div>
+    <div class="panel-block">
+        <progress class="progress" :value="mailsLength - countMails" :max="mailsLength">15%</progress>                
+    </div>
     <p class="panel-tabs">
-        <a :class="{'is-active' : filterType ==='all'}" @click="sortList('all')">all</a>
-        <a :class="{'is-active' : filterType ==='unread'}" @click="sortList('unread')">unRead {{countMails}}</a>
-        <a :class="{'is-active' : filterType ==='time'}" @click="sortList('time')">Newest First</a>
-        <a :class="{'is-active' : filterType ==='title'}" @click="sortList('title')">By Title</a>
+        <a :class="{'is-primary' : filterType ==='all'}" 
+        @click="sortList('all')" class="tag">all</a>
+        <a :class="{'is-primary' : filterType ==='unread'}"
+         @click="sortList('unread')"class="tag">unRead {{countMails}}</a>
+        <a :class="{'is-primary' : filterType ==='time'}" 
+        @click="sortList('time')" class="tag">Newest First</a>
+        <a :class="{'is-primary' : filterType ==='title'}"
+         @click="sortList('title')" class="tag">By Title</a>
     </p>
     <div v-if="mails.length" class="preview-container">
     <transition-group name="flip-list" tag="section">
@@ -39,8 +46,7 @@ export default {
             // mails : [],
             selectedMailId: null,
             searchQuery: '',
-            filterType: 'all'
-
+            filterType: 'all',
         }
     },
     methods: {
@@ -61,6 +67,9 @@ export default {
             return this.mails.reduce((acc, mail) => {
                 return acc + !mail.isRead
             }, 0)
+        },
+        mailsLength(){
+            return this.mails.length
         }
     },
     components: {
