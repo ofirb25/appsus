@@ -9,7 +9,7 @@ export default {
         <section>
             <map-comp></map-comp>
             <div class="comps">
-            <search-place></search-place>
+            <search-place @changeLocation="changeLocation"></search-place>
             <places-list :places="places"></places-list>
             <transition
             name="custom-classes-transition"
@@ -24,7 +24,8 @@ export default {
     data() {
         return {
             places: [],
-            selectedPlace: null
+            selectedPlace: null,
+            marker: null
         }
     },
     created() {
@@ -45,6 +46,11 @@ export default {
                 return true
             }
             return false
+        }
+    },
+    methods: {
+        changeLocation(query) {            
+            this.marker = PlacesService.getLocation(query)
         }
     },
         components: {
