@@ -37,7 +37,7 @@ computed : {
     }
 },
 created () {
-    this.timeAgo = moment().format('ddMM',this.mail.time)
+    this.timeAgo =moment(this.mail.time).format("MMM Do");
 },
 props : {
     mail : Object

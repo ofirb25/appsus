@@ -1,29 +1,33 @@
 import MailService from '../mailServices/MailService.js';
 import EmailDetails from '../comps/EmailDetails.js';
 import EmailList from '../comps/EmailList.js'
+import EmailCompose from '../comps/EmailCompose.js'
 
 export default {
     template: `
-        <section>
-        <div class="columns">
-            <div class="column is-third">
-                <email-list :mails="mails" 
-                @updateSelected="updateSelected"
-                 @doSearch="doSearch"
-                 @sortList="sortList">
-                </email-list>
-            </div>
-            <div class="column">
-                <transition
-                name="custom-classes-transition"
-                enter-active-class="animated fadeInDown"
-                leave-active-class="animated bounceOutRight">
-                <email-details v-if="selectedMail" :mail="selectedMail"
-                 @deleteMail="deleteMail"></email-details>
+    <section>
+    <div class="columns">
+        <div class="column is-third">
+            <email-list :mails="mails" @updateSelected="updateSelected" 
+            @doSearch="doSearch" @sortList="sortList">
+            </email-list>
+        </div>
+        <div class="column">
+            <div class="column" v-if="showDetailsMode">
+                <transition name="custom-classes-transition"
+                 enter-active-class="animated fadeInDown" 
+                 leave-active-class="animated bounceOutRight">
+                    <email-details v-if="selectedMail" :mail="selectedMail"
+                     @deleteMail="deleteMail" @closeDetails="closeDetails"></email-details>
                 </transition>
             </div>
+            <div class="column" v-else-if="onAddMode">
+                <email-compose @sendMail="sendMail"></email-compose>
+            </div>
+            <div class="column" v-else>
+            </div>
         </div>
-        </section>
+</section>
     `,
     data() {
         return {
@@ -79,9 +83,34 @@ export default {
                 this.getMails()
             }
         },
+        closeDetails() {
+            this.selectedMail = null;
+            this.$router.push('/mails')
+        },
+        sendMail(mail) {
+            MailService.saveMail(mail).then(res => {
+                this.$router.push('/mails');
+            })
+        }
+    },
+    computed: {
+        onAddMode() {
+            if (this.$route.params.action === 'compose') {
+                return true
+            }
+            return false
+        },
+        showDetailsMode() {
+            if (this.$route.params.mailId) {
+                return true
+            }
+            return false
+        }
+
     },
     components: {
         EmailDetails,
-        EmailList
+        EmailList,
+        EmailCompose
     }
 }

@@ -28,7 +28,11 @@ const routes = [
     {
         path: '/mails/mail/:mailId' ,
         component: EmailApp
-    }  
+    },
+    {
+        path: '/mails/:action',
+        component: EmailApp
+    }
 ]
 
 export default routes

@@ -7,6 +7,7 @@ export default {
         <p class="card-header-title">
             {{mail.title}}
         </p>
+        <span tag="button" class="delete closeMail" @click="closeDetails" aria-label="close"></span>
         </header>
         <div class="card-content">
             <div class="content">
@@ -41,6 +42,9 @@ export default {
     methods: {
         deleteMail(mailId) {
             this.$emit('deleteMail', mailId)
+        },
+        closeDetails() {
+            this.$emit('closeDetails')
         }
     }
 

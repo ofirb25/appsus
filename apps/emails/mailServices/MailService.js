@@ -76,7 +76,7 @@ function getMailById(mailId) {
 
 function saveMail(mail) {
     return new Promise((resolve, reject) => {
-        mai.id = _getNextId()
+        mail.id = _getNextId()
         mails.push(mail);
         resolve(mail)
     });
@@ -152,6 +152,17 @@ function searchMail(query) {
     })
 
 }
+function emptyMail() {
+    return {
+        sender: 'Me!',
+        senderPic: 'assets/senders-pics/gal_gadot.png',
+        title: '',
+        text: '',
+        isRead: false,
+        time: Date.now()
+    }
+}
+
 
 export default {
     getMails,
@@ -161,6 +172,8 @@ export default {
     sortByTitle,
     sortByDate,
     searchMail,
-    filterUnread
+    filterUnread,
+    emptyMail,
+    saveMail
 }
 
