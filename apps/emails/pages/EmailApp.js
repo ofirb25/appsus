@@ -7,10 +7,20 @@ export default {
         <section>
         <div class="columns">
             <div class="column is-third">
-                <email-list @updateSelected="updateSelected"></email-list>
+                <email-list :mails="mails" 
+                @updateSelected="updateSelected"
+                 @doSearch="doSearch"
+                 @sortList="sortList">
+                </email-list>
             </div>
             <div class="column">
-                <email-details v-if="" :mail="selectedMail" @deleteMail="deleteMail"></email-details>
+                <transition
+                name="custom-classes-transition"
+                enter-active-class="animated fadeInDown"
+                leave-active-class="animated bounceOutRight">
+                <email-details v-if="selectedMail" :mail="selectedMail"
+                 @deleteMail="deleteMail"></email-details>
+                </transition>
             </div>
         </div>
         </section>
@@ -23,6 +33,7 @@ export default {
         }
     },
     created() {
+        this.getMails();
         if (this.$route.params.mailId) {
             this.updateSelected(+this.$route.params.mailId)
         }
@@ -36,7 +47,7 @@ export default {
             this.$router.push('/mails/mail/' + mailId);
             MailService.getMailById(mailId)
                 .then(mail => {
-                this.selectedMail = mail
+                    this.selectedMail = mail
                     if (!mail.isRead) MailService.markRead(mailId)
                     console.log(mail)
                 });
@@ -44,16 +55,30 @@ export default {
         deleteMail(mailId) {
             MailService.deleteMail(mailId)
                 .then(mails => {
-                    swal(
-                        'Deleted!',
-                        'Your mail has been deleted.',
-                        'success'
-                    )
                     console.log('deleted!');
-                    this.selectedMail = null;
-                    this.$router.push('/mails')
+                    setTimeout(() => { this.selectedMail = null }, 200);
+                    this.$router.push('/mails');
+                    this.getMails()
+                    
                 })
-        }
+        },
+        doSearch(query){
+            MailService.searchMail(query)
+                .then(mails => this.mails = mails)
+                .catch(res => this.mails = res);
+        },
+        sortList(sortBy) {
+            if (sortBy === 'time') {
+                this.mails = MailService.sortByDate()
+            } else if (sortBy === 'title') {
+                this.mails = MailService.sortByTitle()
+            }
+            else if (sortBy === 'unread') {
+                MailService.filterUnread().then(filteredMails =>this.mails = filteredMails)
+            } else {
+                this.getMails()
+            }
+        },
     },
     components: {
         EmailDetails,

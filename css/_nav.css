@@ -65,3 +65,6 @@
     .nav-container li:last-child {
         border-right: 0px;
     }    
+nav {
+    z-index:10
+}

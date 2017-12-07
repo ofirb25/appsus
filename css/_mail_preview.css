@@ -30,3 +30,15 @@
     height:80vh;
     overflow-y:scroll;
 }
+.mail-title {
+    font-size:0.85em
+}
+.mail-sender-name {
+    font-size:0.8em
+}
+.mail-body{
+    font-size:0.75em
+}
+.flip-list-move {
+    transition: transform 500ms;
+  }

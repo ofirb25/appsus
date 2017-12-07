@@ -89,11 +89,11 @@ function markRead(mailId) {
 
 function deleteMail(mailId) {
     var mailIdx = getMailIdx(mailId)
-    return new Promise ((resolve,reject)=>{
+    return new Promise((resolve, reject) => {
         mails.splice(mailIdx, 1);
         resolve(mails);
     })
-   
+
 }
 
 function getMailIdx(mailId) {
@@ -116,9 +116,41 @@ function sortByDate() {
 function sortByTitle() {
     console.log()
     return mails.sort((a, b) => {
-        if(a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) return -1
+        if (a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) return -1
         else return 1
     })
+}
+
+function filterUnread(){
+    var results = []
+    return new Promise((resolve, reject) => {
+        results = mails.filter(mail => {
+            return !mail.isRead
+        });
+        if (results.length) {
+            console.log('res', results);
+            resolve(results)
+        }
+        else reject([])
+    });
+}
+
+function searchMail(query) {
+    if(!query.trim()) return Promise.resolve(mails)
+    var results = []
+    return new Promise((resolve, reject) => {
+        results = mails.filter(mail => {
+            return mail.title.toLowerCase().includes(query.toLowerCase()) ||
+                mail.text.toLowerCase().includes(query.toLowerCase()) ||
+                mail.sender.toLowerCase().includes(query.toLowerCase());
+        });
+        if (results.length) {
+            console.log('res', results);
+            resolve(results)
+        }
+        else reject([])
+    })
+
 }
 
 export default {
@@ -127,6 +159,8 @@ export default {
     deleteMail,
     markRead,
     sortByTitle,
-    sortByDate
+    sortByDate,
+    searchMail,
+    filterUnread
 }
 
