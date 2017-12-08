@@ -46,11 +46,19 @@ function getMap() {
     return gMap
 }
 
-function savePlace(place) {
+function savePlace(placeToSave) {
     return new Promise((resolve, reject) => {
-        place.id = _getNextId()
-        places.push(place);
-        resolve(place)
+        if(placeToSave.id) {
+            let placeIdx = places.findIndex(place => {
+                return placeToSave.id === place.id
+            })
+            places.splice(placeIdx, 1, placeToSave)
+        }
+        else {
+            placeToSave.id = _getNextId()
+            places.push(placeToSave);    
+        }
+        resolve(placeToSave)
     });
 };
 

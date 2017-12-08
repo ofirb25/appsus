@@ -44,6 +44,10 @@ const routes = [
     {
         path: '/places/:action',
         component : PlacesApp
+    },
+    {
+        path: '/places/place/:placeId/:action',
+        component: PlacesApp
     }
 
 ]

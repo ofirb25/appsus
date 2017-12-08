@@ -16,7 +16,7 @@ export default {
             <transition name="custom-classes-transition"
             enter-active-class="animated slideInLeft"
             leave-active-class="animated slideOutLeft">
-            <place-details v-if="showDetailsMode" :place="selectedPlace"></place-details>
+            <place-details v-if="showDetailsMode" :place="selectedPlace" @updatePlace="savePlace" @deletePlace="deletePlace"></place-details>
             <new-place @cancelPlace="cancelPlace"  @savePlace="savePlace" v-if="isAdding && userNavigation" 
             :apiData="userNavigation" :map="map"></new-place>            
             </transition>
@@ -29,7 +29,7 @@ export default {
             selectedPlace: null,
             marker: null,
             map: null,
-            userNavigation : null
+            userNavigation: null
         }
     },
     created() {
@@ -51,7 +51,7 @@ export default {
             }
             return false
         },
-        isAdding(){
+        isAdding() {
             console.log(this.$route.params.action === 'add')
             return this.$route.params.action === 'add'
         }
@@ -61,8 +61,6 @@ export default {
             PlacesService.getLocation(query)
                 .then(data => {
                     this.userNavigation = data;
-                    console.log(this.userNavigation)
-                    console.log(data.results[0].formatted_address)
                     var pos = {
                         lat: data.results[0].geometry.location.lat,
                         lng: data.results[0].geometry.location.lng
@@ -80,16 +78,22 @@ export default {
             this.map = PlacesService.getMap();
             console.log(this.map)
         },
-        savePlace(place){
-            PlacesService.savePlace(place).then(res=>{console.log('saved!')});
+        savePlace(place) {
+            PlacesService.savePlace(place).then(res => { console.log('saved!') });
             this.$router.push('/places');
         },
-        cancelPlace(){
-            console.log('marker',this.marker);
-            // this.marker.setMap(null);
-            // this.marker = null;
+        cancelPlace() {
+            console.log('marker', this.marker);
+            // PlacesService.displayMap()
             this.marker.setMap(null);
             console.log(this.map)
+        },
+        deletePlace(placeId) {
+            PlacesService.deletePlace(placeId)
+                .then(mails => {
+                    this.selectedPlace = null
+                    this.$router.push('/places');
+                })
         }
     },
     components: {

@@ -1,6 +1,4 @@
-export default {
-  template: `
-  <div v-if="place" class="card place-details">
+<div v-if="place" class="card place-details">
     <div class="card-image">
         <figure class="image is-4by3">
             <img v-for="(photo,idx) in place.photos" :src="photo" v-if="curPhoto === idx" alt="Placeholder image">
@@ -39,14 +37,9 @@ export default {
             {{place.description}}
             <br>
         </div>
-        <div class="field is-grouped">
         <span v-if="!onEditMode" class="icon has-text-info" @click="switchToEdit">
-          <i class="fa fa-pencil fa-lg details-trash"></i>
+            <i class="fa fa-pencil fa-lg details-trash"></i>
         </span>
-        <span @click="deletePlace(place.id)" class="icon has-text-info">
-          <i class="fa fa-trash-o fa-lg details-trash"></i>
-        </span>
-        </div>
         <div class="field is-grouped" v-if="onEditMode">
             <div class="control">
                 <button class="button is-link" @click="updatePlace">Save</button>
@@ -57,41 +50,5 @@ export default {
                 </div>
             </router-link>
         </div>
-
     </div>
-  </div>
-    `,
-  props: {
-    place: Object,
-  },
-  data() {
-    return {
-      curPhoto: 0,
-      updatedPlace: '',
-    }
-  },
-  methods: {
-    isCurpic(idx) {
-      return this.curPhoto === +idx ? { 'fa-circle': true } : { 'fa-circle-o': true }
-    },
-    tempUpdatePlace(e, propToUpdate) {
-      if (propToUpdate === 'name') this.updatedPlace.name = e.target.innerText
-      else this.updatedPlace.description = e.target.innerText
-    },
-    switchToEdit() {
-      this.$router.push('/places/place/' + this.place.id + '/edit');
-    },
-    updatePlace() {
-      this.$emit('updatePlace', this.updatedPlace)
-    },
-    deletePlace(placeId) {
-      this.$emit('deletePlace', placeId)      
-    }
-  },
-  computed: {
-    onEditMode() {
-      this.updatedPlace = JSON.parse(JSON.stringify(this.place))
-      return this.$route.params.action === 'edit'
-    }
-  },
-}
+</div>
