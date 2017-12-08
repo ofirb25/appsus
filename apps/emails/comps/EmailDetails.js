@@ -2,7 +2,7 @@ import MailService from '../mailservices/MailService.js';
 
 export default {
     template: `
-    <div v-if="mail" class="card">
+    <div v-if="mail" class="card mail-details">
         <header class="card-header">
         <p class="card-header-title">
             {{mail.title}}

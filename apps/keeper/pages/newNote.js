@@ -3,7 +3,7 @@ import colorPicker from '../comps/colorPicker.js'
 
 export default {
     template: `
-
+    
     <div class="modal" :class="{'is-active' : isDDActive}" @keyUp.esc="test">
     <div class="modal-background" @click="closeModal"></div>
     <div class="modal-card">

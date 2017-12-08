@@ -23,7 +23,7 @@ export default {
         <a :class="{'is-primary' : filterType ==='all'}" 
         @click="sortList('all')" class="tag">all</a>
         <a :class="{'is-primary' : filterType ==='unread'}"
-         @click="sortList('unread')"class="tag">unRead {{countMails}}</a>
+         @click="sortList('unread')"class="tag"> <span class="fa fa-envelope"></span>  {{countMails}}</a>
         <a :class="{'is-primary' : filterType ==='time'}" 
         @click="sortList('time')" class="tag">Newest First</a>
         <a :class="{'is-primary' : filterType ==='title'}"

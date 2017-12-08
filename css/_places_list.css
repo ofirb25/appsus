@@ -7,6 +7,7 @@
     top:100px;
     background: white;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.28);
+    overflow-y: scroll;
 }
 
 .places-list-container .panel-block {
@@ -14,7 +15,47 @@
     font-size:0.8em;
     padding:3px;
 }
+.map-legend-trigger {
+    display: none;
+}
+@media screen and (max-width:600px) {
+    #map {
+        height:90vh
+    }
+    section.places-list-container {
+        transition: all 500ms
+    }
+    .map-legend-trigger {
+        display: block;
+        text-align: center;
+        cursor: pointer;
+        margin-top:-6px;   
+        position:relative;
+        top:0     
+    }
+    section.places-list-container.close {
+        height: 50px;
+        top: auto;
+        width: 100vw;
+        bottom: 0;
+        right: auto;
+    }
+    .close .place-list-item {
+        display : none
+    }
+    .place-list-item:first {
+        padding-top:20px
+    }
+    section.places-list-container.open {
+        height: 60vh;
+        top: auto;
+        width: 100vw;
+        bottom: 0;
+        right: auto;
+        text-align: center;
+        z-index:10000;
+    
+        padding-top:30px
+    }
 
-.place-search-input {
-    width: 100%
 }

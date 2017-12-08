@@ -18,3 +18,12 @@
     cursor: pointer;
 }
 
+<<<<<<< HEAD
+=======
+@media screen and (max-width:600px) {
+    .card.place-details {
+        width: 100vw;
+        z-index: 10000;
+    }
+}
+>>>>>>> 5de01fa746b8c8c7ab95ea26a49d1679f0c37109
