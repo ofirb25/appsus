@@ -9,6 +9,10 @@ export default {
             <span v-for="(photo,idx) in place.photos" class="fa" @click="curPhoto=idx" :class="isCurpic(idx)"></span>
         </div>
     </div>
+    <router-link to="/places" class="exit-place-details">
+        <span tag="button" class="delete" aria-label="close"></span>        
+    </router-link>
+
     <div class="card-content">
         <div class="media">
             <div class="media-left">
@@ -39,12 +43,12 @@ export default {
             {{place.description}}
             <br>
         </div>
-        <div class="field is-grouped">
-        <span v-if="!onEditMode" class="icon has-text-info" @click="switchToEdit">
-          <i class="fa fa-pencil fa-lg details-trash"></i>
+        <div class="field is-grouped is-clearfix">
+        <span v-if="!onEditMode" class="icon has-text-info place-details-icon" @click="switchToEdit">
+          <i class="fa fa-pencil fa-lg"></i>
         </span>
-        <span @click="deletePlace(place.id)" class="icon has-text-info">
-          <i class="fa fa-trash-o fa-lg details-trash"></i>
+        <span v-if="!onEditMode" @click="deletePlace(place.id)" class="icon has-text-info place-details-icon">
+          <i class="fa fa-trash-o fa-lg "></i>
         </span>
         </div>
         <div class="field is-grouped" v-if="onEditMode">

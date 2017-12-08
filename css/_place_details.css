@@ -18,12 +18,36 @@
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-=======
+.exit-place-details {
+    float: right;
+    margin-right: 7px;
+    position: relative;
+    top: -22px;
+}
+
+.place-details-icon {
+    background-color: rgb(204, 204, 204);
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.1s;
+    margin: 3px;
+}
+.place-details-icon i {
+    color: white;
+    font-size: 20px;
+}
+.place-details-icon:hover {
+    background-color: rgb(145, 145, 145);
+}
+
+.place-details-icon:hover i {
+    font-size: 21px;
+}
+
 @media screen and (max-width:600px) {
     .card.place-details {
         width: 100vw;
         z-index: 10000;
     }
 }
->>>>>>> 5de01fa746b8c8c7ab95ea26a49d1679f0c37109

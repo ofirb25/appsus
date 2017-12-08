@@ -11,13 +11,14 @@ export default {
                 <email-list :mails="mails" @updateSelected="updateSelected" 
                 @doSearch="doSearch" @sortList="sortList">
                 </email-list>
+                <img v-if="isLoading" src="assets/Loading_icon.gif"/>                
             </div>
             <div class="column" v-if="showDetailsMode">
                 <transition name="custom-classes-transition"
                 enter-active-class="animated fadeInDown" 
                 leave-active-class="animated bounceOutRight">
                     <email-details v-if="selectedMail" :mail="selectedMail"
-                    @deleteMail="deleteMail"></email-details>
+                    @deleteMail="deleteMail" @markUnread="markUnread"></email-details>
                 </transition>
             </div>
             <div class="column" v-else-if="onAddMode">
@@ -35,18 +36,22 @@ export default {
         return {
             mails: [],
             selectedEmailId: null,
-            selectedMail: null
+            selectedMail: null,
+            isLoading: false            
         }
     },
     created() {
-        this.getMails();
+        this.isLoading = true;        
+        this.getMails()
         if (this.$route.params.mailId) {
             this.updateSelected(+this.$route.params.mailId)
         }
     },
     methods: {
         getMails() {
-            MailService.getMails().then(mails => this.mails = mails);
+            MailService.getMails().then(mails => {
+                this.isLoading = false;                        
+                this.mails = mails});
         },
         updateSelected(mailId) {
             this.selectedEmailId = mailId
@@ -63,10 +68,16 @@ export default {
                 .then(mails => {
                     console.log('deleted!');
                     this.selectedMail = null 
-                    this.$router.push('/mails');
-                    this.getMails()
-                    
+                    this.$router.push('/mails');                    
                 })
+        },
+        markUnread(mailId) {
+            MailService.markRead(mailId)
+            .then(mails => {
+                console.log('marked!');
+                this.selectedMail = null 
+                this.$router.push('/mails');                    
+            })
         },
         doSearch(query){
             MailService.searchMail(query)

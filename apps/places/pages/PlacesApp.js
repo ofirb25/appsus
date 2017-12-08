@@ -5,14 +5,17 @@ import NewPlace from '../comps/NewPlace.js';
 import PlacesList from '../comps/PlacesList.js';
 import SearchPlace from '../comps/SearchPlace.js';
 import MapComp from '../comps/MapComp.js';
+import MyLocation from '../comps/MyLocation.js';
+
 
 export default {
     template: `
         <section>
             <map-comp @gotMap="gotMap"></map-comp>
             <div class="comps">
+            <my-location @GoToUserPos="GoToUserPos"></my-location>
             <search-place @changeLocation="changeLocation"></search-place>
-            <places-list :places="places"></places-list>
+            <places-list :places="places" @searchPlace="searchPlace"></places-list>
             <transition name="custom-classes-transition"
             enter-active-class="animated slideInLeft"
             leave-active-class="animated slideOutLeft">
@@ -61,7 +64,7 @@ export default {
             PlacesService.getLocation(query)
                 .then(data => {
                     this.userNavigation = data;
-                    var pos = {
+                    let pos = {
                         lat: data.results[0].geometry.location.lat,
                         lng: data.results[0].geometry.location.lng
                     }
@@ -94,6 +97,21 @@ export default {
                     this.selectedPlace = null
                     this.$router.push('/places');
                 })
+        },
+        searchPlace(query) {
+            PlacesService.searchPlace(query)
+                .then(places => this.places = places)
+                .catch(res => this.places = res);
+        },
+        GoToUserPos() {
+            PlacesService.getUserLocation()
+                .then(position => {
+                    let pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    }
+                    this.map.setCenter(pos)
+                })
         }
     },
     components: {
@@ -101,6 +119,7 @@ export default {
         PlaceDetails,
         MapComp,
         SearchPlace,
-        NewPlace
+        NewPlace,
+        MyLocation
     }
 }

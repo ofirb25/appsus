@@ -9,6 +9,25 @@
     top:100px;
     z-index:9999;
     width: 200px;
-    right:200px;
+    right:230px;
+}
+
+.my-location-button {
+    position: absolute;
+    top:150px;
+    z-index:9999;
+    right:230px;
+    cursor: pointer;
+}
+
+.my-location-container {
+    background-color: white;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.28);
+    color: rgb(82, 82, 82);
+}
+
+.my-location-container:hover > i {
+    font-size: 1.4em;
+    color: rgb(68, 68, 68)
     
 }

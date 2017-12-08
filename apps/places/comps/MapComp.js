@@ -13,6 +13,5 @@ export default {
     mounted() {
         PlacesService.displayMap();
         this.$emit('gotMap')
-        PlacesService.getUserLocation().then(res=>console.log(res))
     }
 }

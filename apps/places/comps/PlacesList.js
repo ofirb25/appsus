@@ -2,6 +2,15 @@ import PlacePreview from '../comps/PlacePreview.js'
 export default {
     template: `
         <section class="places-list-container" :class="classObj">
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                <input class="input is-small" type="text" @input="searchPlace" 
+                placeholder="search" v-model="searchQuery">
+                <span class="icon is-small is-left">
+                    <i class="fa fa-search"></i>
+                </span>
+                </p>
+            </div>
             <div class="map-legend-trigger" :class="classObj" @click="isOpen=!isOpen">Map Legend</div>
             <place-preview v-for="place in places" :place="place"></place-preview>
         </section>
@@ -11,7 +20,8 @@ export default {
     },
     data (){
         return {
-            isOpen : false
+            isOpen : false,
+            searchQuery: '',            
         }
     },
     computed : {
@@ -24,6 +34,11 @@ export default {
                     return {close : !this.isOpen}
                 }
             }
+        }
+    },
+    methods: {
+        searchPlace() {
+            this.$emit('searchPlace', this.searchQuery);
         }
     },
     components: {

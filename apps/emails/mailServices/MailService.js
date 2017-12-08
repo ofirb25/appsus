@@ -84,7 +84,11 @@ function saveMail(mail) {
 
 function markRead(mailId) {
     var mailIdx = getMailIdx(mailId)
-    mails[mailIdx].isRead = !mails[mailIdx].isRead;
+    return new Promise((resolve, reject) => {
+        mails[mailIdx].isRead = !mails[mailIdx].isRead;
+        resolve(mails);
+    })
+
 }
 
 function deleteMail(mailId) {
