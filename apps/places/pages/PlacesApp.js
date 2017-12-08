@@ -15,7 +15,7 @@ export default {
             <div class="comps">
             <my-location @GoToUserPos="GoToUserPos"></my-location>
             <search-place @changeLocation="changeLocation"></search-place>
-            <places-list :places="places" @searchPlace="searchPlace"></places-list>
+            <places-list :places="places" @changePlace="changePlace" @searchPlace="searchPlace"></places-list>
             <transition name="custom-classes-transition"
             enter-active-class="animated slideInLeft"
             leave-active-class="animated slideOutLeft">
@@ -79,7 +79,6 @@ export default {
         },
         gotMap() {
             this.map = PlacesService.getMap();
-            console.log(this.map)
         },
         savePlace(place) {
             PlacesService.savePlace(place).then(res => { console.log('saved!') });
@@ -89,7 +88,6 @@ export default {
             console.log('marker', this.marker);
             // PlacesService.displayMap()
             this.marker.setMap(null);
-            console.log(this.map)
         },
         deletePlace(placeId) {
             PlacesService.deletePlace(placeId)
@@ -112,6 +110,14 @@ export default {
                     }
                     this.map.setCenter(pos)
                 })
+        },
+        changePlace() {
+            console.log(this.selectedPlace)
+            PlacesService.getPlaceById(+this.$route.params.placeId)
+            .then(place=>{
+                this.selectedPlace = place;
+                this.map.setCenter({lat:this.selectedPlace.lat,lng:this.selectedPlace.lng})
+            })
         }
     },
     components: {

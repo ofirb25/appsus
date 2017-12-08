@@ -2,17 +2,18 @@ import PlacePreview from '../comps/PlacePreview.js'
 export default {
     template: `
         <section class="places-list-container" :class="classObj">
-            <div class="panel-block">
-                <p class="control has-icons-left">
-                <input class="input is-small" type="text" @input="searchPlace" 
-                placeholder="search" v-model="searchQuery">
-                <span class="icon is-small is-left">
-                    <i class="fa fa-search"></i>
-                </span>
-                </p>
-            </div>
             <div class="map-legend-trigger" :class="classObj" @click="isOpen=!isOpen">Map Legend</div>
-            <place-preview v-for="place in places" :place="place"></place-preview>
+            <div class="panel-block">
+            <p class="control has-icons-left">
+            <input class="input is-small" type="text" @input="searchPlace" 
+            placeholder="search" v-model="searchQuery">
+            <span class="icon is-small is-left">
+                <i class="fa fa-search"></i>
+            </span>
+            </p>
+        </div>
+            <place-preview v-for="place in places" 
+            :place="place" @changePlace="changePlace"></place-preview>
         </section>
     `,
     props: {
@@ -27,7 +28,6 @@ export default {
     computed : {
         classObj() {
             if(innerWidth <= 600) {
-                console.log('width', innerWidth)
                 if (this.isOpen ) {
                     return {open : this.isOpen}
                 } else {
@@ -39,6 +39,9 @@ export default {
     methods: {
         searchPlace() {
             this.$emit('searchPlace', this.searchQuery);
+        },
+        changePlace(){
+            this.$emit('changePlace')
         }
     },
     components: {

@@ -55,7 +55,10 @@ function savePlace(placeToSave) {
             places.splice(placeIdx, 1, placeToSave)
         }
         else {
-            placeToSave.id = _getNextId()
+            console.log(placeToSave)
+            placeToSave.id = _getNextId();
+            placeToSave.lat = +placeToSave.lat
+            placeToSave.lng = +placeToSave.lng
             places.push(placeToSave);
         }
         resolve(placeToSave)
@@ -139,6 +142,7 @@ function getLocation(query) {
     return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyB6ZAQiNEXagLdD5SAJNtDjWmItieR5uVQ`)
         .then(res => res.json())
         .then(data => data)
+        .catch('connection error')
 }
 
 function searchPlace(query) {
