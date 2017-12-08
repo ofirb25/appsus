@@ -6,8 +6,12 @@ import NoteDetails from '../pages/NoteDetails.js';
 export default {
     template: `
         <section>
+        <transition name="custom-classes-transition"
+        enter-active-class="animated fadeInDown" 
+        leave-active-class="animated bounceOutRight">
             <new-note  v-if="onAddMode||onEditMode"></new-note>
             <note-details  v-if="showDetailsMode"></note-details>
+        </transition>
             <router-link v-if="!onAddMode" to="/notes/add" tag="button" class="add-note button is-danger">
                 <span class="fa fa-plus"></span>
             </router-link>                                                

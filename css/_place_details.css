@@ -17,3 +17,10 @@
     margin-left: 10px;
     cursor: pointer;
 }
+
+@media screen and (max-width:600px) {
+    .card.place-details {
+        width: 100vw;
+        z-index: 10000;
+    }
+}

@@ -1,6 +1,6 @@
 export default {
     template: `
-    <section>
+    <section class="place-list-item">
         <router-link :to="'/places/place/'+place.id" class="place-preview panel-block">
             <div class="place-marker-wrapper">
                 <i class="fa fa-smile-o"></i>
