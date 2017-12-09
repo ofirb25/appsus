@@ -1,5 +1,3 @@
-import MailService from '../mailservices/MailService.js';
-
 export default {
     template: `
     <div v-if="mail" class="card mail-details">
