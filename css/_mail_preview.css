@@ -41,4 +41,12 @@
 }
 .flip-list-move {
     transition: transform 500ms;
-  }
+}
+
+.mail-prev {
+    transition: 0.3s
+}
+
+.mail-active {
+    border-left: 3px solid rgb(112, 112, 112)
+}
