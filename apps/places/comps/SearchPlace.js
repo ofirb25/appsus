@@ -3,7 +3,9 @@ export default {
         <section class="search-place">
         <div class="field">
         <p class="control has-icons-left">
-          <input ref="auto" class="input map-input" type="text" placeholder="Search a place" v-model="query" @keyup.enter="changeLocation" @blur="changeLocation">
+          <input ref="auto" class="input map-input" 
+          type="text" placeholder="Search a place"
+           v-model="query" @keyup.enter="changeLocation">
           <span class="icon is-small is-left">
             <i class="fa fa-search"></i>
           </span>

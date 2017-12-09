@@ -73,11 +73,14 @@ export default {
   },
   methods: {
     savePlace(){
-      this.$emit('savePlace',this.userData)
+      this.userData.lat = this.apiData.results[0].geometry.location.lat
+      this.userData.lng = this.apiData.results[0].geometry.location.lng;
+      console.log('this.userdata',this.userData);
+      this.$emit('savePlace',this.userData);
     },
     cancelPlace(){
-      this.$emit('cancelPlace')      
       this.$router.push('/places');
+      this.$emit('cancelPlace')      
     }
   },
   created() {
