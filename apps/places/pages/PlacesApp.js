@@ -81,8 +81,7 @@ export default {
             else this.$router.push('/places');
         },
         cancelPlace() {
-            
-            this.marker.setMap(null);
+            PlacesService.deleteMarker()
         },
         deletePlace(placeId) {
             PlacesService.deletePlace(placeId)
@@ -104,6 +103,7 @@ export default {
                         lng: position.coords.longitude
                     }
                     this.map.setCenter(pos)
+                    PlacesService.addMarker(pos)  
                 })
         },
         changePlace() {
