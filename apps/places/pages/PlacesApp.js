@@ -55,7 +55,6 @@ export default {
             return false
         },
         isAdding() {
-            console.log(this.$route.params.action === 'add')
             return this.$route.params.action === 'add'
         }
     },
@@ -69,25 +68,20 @@ export default {
                         lng: data.results[0].geometry.location.lng
                     }
                     this.map.setCenter(pos)
-                    this.marker = new google.maps.Marker({
-                        position: pos,
-                        title: data.results[0].formatted_address
-                    });
-                    this.marker.setMap(this.map);
+                    PlacesService.addMarker(pos, data.results[0].formatted_address)
                     this.$router.push('/places/add')
                 });
         },
         gotMap() {
             this.map = PlacesService.getMap();
-            console.log(this.map)
         },
         savePlace(place) {
             PlacesService.savePlace(place).then(res => { console.log('saved!') });
-            this.$router.push('/places');
+            if (this.$route.params.placeId) { this.$router.push('/places/place/' + this.selectedPlace.id) }
+            else this.$router.push('/places');
         },
         cancelPlace() {
-            console.log('marker', this.marker);
-            // PlacesService.displayMap()
+            
             this.marker.setMap(null);
             console.log(this.map)
         },

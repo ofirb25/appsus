@@ -96,6 +96,7 @@ function emptyPlace() {
 
 
 var gMap;
+var gMarkers =[]
 function displayMap(locationObj) {
     // Create a map object and specify the DOM element for display.
     gMap = new google.maps.Map(document.querySelector('#map'), {
@@ -113,8 +114,22 @@ function displayMap(locationObj) {
             EventBusService.$emit('changeSelected', place);
             // this.$router.push('/places/place/'+place.id);
         });
+        gMarkers.push(marker)
     });
+}
 
+function addMarker(pos, title) {
+    let marker = new google.maps.Marker({
+        position: pos,
+        title: title
+    });
+    marker.setMap(gMap);
+    gMarkers.push(marker)
+}
+
+function deleteMarker(markerIdx) {
+    console.log(markerIdx)
+    markerIdx.setMap(null)
 }
 
 function getUserLocation() {
@@ -165,6 +180,7 @@ export default {
     getUserLocation,
     getLocation,
     getMap,
-    searchPlace
+    searchPlace,
+    addMarker
 }
 
