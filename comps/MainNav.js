@@ -9,7 +9,7 @@ export default {
 <div class="nav-container">
   <nav class="nav" >
     <a class="navbar-item nav-logo" href="/">
-      <img src="../assets/logo.png" alt="Apsus app" width="112" height="28" class="logo-img">
+      <img src="assets/logo.png" alt="Apsus app" width="112" height="28" class="logo-img">
     </a>
     <div id="main-nav" class="nav-menu">
         <router-link class="nav-item nav-home" active-class="is-active" to="/" exact>

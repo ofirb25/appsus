@@ -34,7 +34,8 @@ a.place-preview.panel-block.router-link-exact-active.router-link-active {
         height:90vh
     }
     section.places-list-container {
-        transition: all 500ms
+        transition: all 500ms;
+        position: fixed;
     }
     .map-legend-trigger {
         display: block;
