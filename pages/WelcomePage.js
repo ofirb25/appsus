@@ -58,7 +58,7 @@ export default {
                 this.timeInterval = setInterval(() => {
                     this.time = moment().format('LLLL')
                 }, 60000);
-            }).catch(err=>this.location = {place:''});
+            }).catch(err=>{this.location = {place:''}});
     },
     destroyed(){
         clearInterval(this.timeInterval)
