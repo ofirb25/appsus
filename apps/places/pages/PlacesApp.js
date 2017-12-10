@@ -111,6 +111,7 @@ export default {
             PlacesService.getPlaceById(+this.$route.params.placeId)
             .then(place=>{
                 this.selectedPlace = place;
+                PlacesService.setMarker(this.selectedPlace)
                 this.map.setCenter({lat:this.selectedPlace.lat,lng:this.selectedPlace.lng})
             })
         }

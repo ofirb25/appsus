@@ -33,7 +33,9 @@ export default {
                         </div>
                     </div>
                     <div class="control">
-                        <button class="button is-link">Save</button>
+                        <button class="button is-link">Send
+                        <i class="fa fa-paper-plane paper-plane" aria-hidden="true"></i>                        
+                        </button>
                     </div>
                 </form>
             </div>

@@ -126,8 +126,13 @@ function addMarker(pos, title, place) {
     
     marker.setMap(gMap);
     marker.addListener('click', function () {
-        //get marker idx
-        var markerIdx = getPlaceIdx(place.id);
+        setMarker(place)
+    });
+    gMarkers.push(marker)
+}
+
+function setMarker(place) {
+    var markerIdx = getPlaceIdx(place.id);
     
         if (gSelectedMarkerIdx !== null) {
             gMarkers[gSelectedMarkerIdx].setIcon(`assets/marker-icons/${place.tag}.png`)
@@ -137,8 +142,7 @@ function addMarker(pos, title, place) {
         //set marker as selected
         gMarkers
         EventBusService.$emit('changeSelected', place);
-    });
-    gMarkers.push(marker)
+
 }
 
 function deleteMarker(placeIdx) {
@@ -199,6 +203,7 @@ export default {
     getMap,
     searchPlace,
     addMarker,
-    deleteMarker
+    deleteMarker,
+    setMarker
 }
 
