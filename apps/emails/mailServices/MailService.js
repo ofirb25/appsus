@@ -11,7 +11,7 @@ var mails = [
     {
         id: 108,
         sender: 'Beyonce ',
-        senderPic: 'assets/senders-pics/gal_gadot.png',
+        senderPic: 'assets/senders-pics/beyonce.jpeg',
         title: 'How are you today? *OLDEST*',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -20,7 +20,7 @@ var mails = [
     {
         id: 105,
         sender: 'Kim Kardashian',
-        senderPic: 'assets/senders-pics/gal_gadot.png',
+        senderPic: 'assets/senders-pics/kim.jpg',
         title: 'How are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: true,
@@ -28,8 +28,8 @@ var mails = [
     },
     {
         id: 101,
-        sender: 'Johnny  Balaloe',
-        senderPic: 'assets/senders-pics/gal_gadot.png',
+        sender: 'Static',
+        senderPic: 'assets/senders-pics/stat.jpg',
         title: 'How is Are to  are you today?',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -38,7 +38,7 @@ var mails = [
     {
         id: 102,
         sender: 'Ricky Martin',
-        senderPic: 'assets/senders-pics/gal_gadot.png',
+        senderPic: 'assets/senders-pics/ricky.jpg',
         title: 'Vivin la vida loca??',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
@@ -47,7 +47,7 @@ var mails = [
     {
         id: 104,
         sender: 'Britney Spears',
-        senderPic: 'assets/senders-pics/gal_gadot.png',
+        senderPic: 'assets/senders-pics/britney.jpg',
         title: 'Hit me baby one more time!!',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
         isRead: false,
