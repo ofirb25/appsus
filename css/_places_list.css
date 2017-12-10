@@ -15,7 +15,9 @@
     width: 20px;
     margin-right: 5px;
 }
-
+.close-place-list {
+    margin-left:10px;
+}
 .places-list-container .panel-block {
     border: none;
     font-size:0.8em;
@@ -66,5 +68,11 @@ a.place-preview.panel-block.router-link-exact-active.router-link-active {
     
         padding-top:30px
     }
-
+    .map-legend-trigger .fa-caret-up{
+        transition: .8s;
+        
+    }
+    .map-legend-trigger.open .fa-caret-up {
+        transform: rotate(180deg);
+    }
 }

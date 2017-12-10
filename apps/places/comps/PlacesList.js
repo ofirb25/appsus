@@ -2,7 +2,9 @@ import PlacePreview from '../comps/PlacePreview.js'
 export default {
     template: `
         <section class="places-list-container" :class="classObj">
-            <div class="map-legend-trigger" :class="classObj" @click="isOpen=!isOpen">Map Legend</div>
+            <div class="map-legend-trigger" :class="classObj" @click="isOpen=!isOpen">
+            <span class="fa fa-caret-up"></span> My Places 
+            </div>
             <div class="panel-block">
             <p class="control has-icons-left">
             <input class="input is-small" type="text" @input="searchPlace" 
@@ -41,6 +43,7 @@ export default {
             this.$emit('searchPlace', this.searchQuery);
         },
         changePlace(){
+            this.isOpen = false;
             this.$emit('changePlace')
         }
     },
