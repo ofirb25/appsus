@@ -7,7 +7,7 @@ const myRouter = new VueRouter({ routes: myRoutes })
 
 new Vue({
     template: `
-        <section>
+        <section :class="isHome">
             <main-nav></main-nav>
             <div  :class="{'is-fluid' : !isMaps,'container' : !isMaps}">
                 <router-view></router-view>
@@ -20,6 +20,9 @@ new Vue({
     computed : {
         isMaps(){
             return this.$route.path.includes('places')
+        },
+        isHome(){
+            return {'homepage' : this.$route.path === '/'}
         }
     },
     router: myRouter

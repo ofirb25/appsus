@@ -20,6 +20,7 @@ export default {
                     <email-details v-if="selectedMail" :mail="selectedMail"
                     @deleteMail="deleteMail" @markUnread="markUnread"></email-details>
                 </transition>
+                
             </div>
             <div class="column" v-else-if="onAddMode">
                 <email-compose @sendMail="sendMail"></email-compose>
