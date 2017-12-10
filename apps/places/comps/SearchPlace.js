@@ -5,7 +5,7 @@ export default {
         <p class="control has-icons-left">
           <input ref="auto" class="input map-input" 
           type="text" placeholder="Search a place"
-           v-model="query" @keyup.enter="changeLocation">
+           v-model="query" @change="changeLocation" @input="doAutocomplete($event)">
           <span class="icon is-small is-left">
             <i class="fa fa-search"></i>
           </span>
@@ -19,12 +19,14 @@ export default {
     }
   },
   mounted() {
-    // var input = document.querySelector('map-input');      
-    // var autocomplete = new google.maps.places.Autocomplete((this.$refs.autocomplete), { types: ['geocode'] });
   },
   methods: {
     changeLocation() {
+      if (!this.query) return
       this.$emit('changeLocation', this.query)
+    },
+    doAutocomplete(event) {
+      var autoComplete = new google.maps.places.Autocomplete(event.target);
     }
   }
 }
