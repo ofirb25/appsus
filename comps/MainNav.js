@@ -1,4 +1,4 @@
-import EventBusService from '../../../services/EventBusService.js';
+import EventBusService from '../services/EventBusService.js';
 import NotesService from '../apps/keeper/services/note.service.js'
 import MailService from '../apps/emails/mailServices/MailService.js';
 import PlacesService from '../apps/places/placesServices/PlacesService.js';
