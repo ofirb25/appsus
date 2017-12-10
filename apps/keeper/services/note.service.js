@@ -1,3 +1,5 @@
+import EventBusService from '../../../services/EventBusService.js'
+
 var notes = [
     {
         "id": 34702,
@@ -106,6 +108,7 @@ function saveNote(noteToSave) {
         } else {
             noteToSave.id = _getNextId;
             notes.push(noteToSave)
+            EventBusService.$emit('changeNotesCount');                                
         }
         resolve(noteToSave)
         // reject('error in saving');
@@ -119,6 +122,7 @@ function deleteNote(noteId) {
         });
         let noteToDelete = notes[noteIdx]
         notes.splice(noteIdx, 1);
+        EventBusService.$emit('changeNotesCount');        
         resolve(noteToDelete.title);
         // reject('the note could not be deleted');
 

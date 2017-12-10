@@ -1,3 +1,5 @@
+
+
 var mails = [
     {
         id: 100,
@@ -50,7 +52,7 @@ var mails = [
         senderPic: 'assets/senders-pics/britney.jpg',
         title: 'Hit me baby one more time!!',
         text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis iste, nisi officia quaerat accusantium pariatur explicabo eaque, possimus reprehenderit corporis eius sed sunt non mollitia ipsa veniam rerum voluptatibus nostrum.',
-        isRead: false,
+        isRead: true,
         time: Date.now(),
     }
 ]
@@ -166,7 +168,7 @@ function searchMail(query) {
 function emptyMail() {
     return {
         sender: 'Me!',
-        senderPic: 'assets/senders-pics/gal_gadot.png',
+        senderPic: 'assets/senders-pics/me.png',
         title: '',
         text: '',
         isRead: false,

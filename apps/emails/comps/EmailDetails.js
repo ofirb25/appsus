@@ -30,7 +30,7 @@ export default {
                     <i class="fa fa-trash-o fa-lg details-trash"></i>
                 </span>
                 <span v-if="!isReplay" @click="isReplay = true" class="icon has-text-info trash-container">
-                    <i class="fa fa-reply fa-lg details-trash"></i>
+                    <i class="fa fa-reply fa-lg details-trash replay-button"></i>
                 </span>
                 <p v-if="!isReplay" @click="markUnread(mail.id)" class="mark-unread">Mark as unread</p>
                 <div class="control" v-if="isReplay">

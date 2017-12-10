@@ -2,6 +2,7 @@ import MailService from '../mailServices/MailService.js';
 import EmailDetails from '../comps/EmailDetails.js';
 import EmailList from '../comps/EmailList.js'
 import EmailCompose from '../comps/EmailCompose.js'
+import EventBusService from '../../../services/EventBusService.js'
 
 export default {
     template: `
@@ -61,7 +62,7 @@ export default {
                 .then(mail => {
                     this.selectedMail = mail
                     if (!mail.isRead) MailService.markRead(mailId)
-                    console.log(mail)
+                    EventBusService.$emit('changeMailsCount');                    
                 });
         },
         deleteMail(mailId) {
@@ -77,7 +78,8 @@ export default {
             .then(mails => {
                 console.log('marked!');
                 this.selectedMail = null 
-                this.$router.push('/mails');                    
+                this.$router.push('/mails');
+                EventBusService.$emit('changeMailsCount');                
             })
         },
         doSearch(query){

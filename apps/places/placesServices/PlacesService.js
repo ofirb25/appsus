@@ -1,5 +1,5 @@
-
 import EventBusService from '../../../services/EventBusService.js'
+
 var places = [
     {
         id: 100,
@@ -57,6 +57,7 @@ function savePlace(placeToSave) {
             placeToSave.lat = +placeToSave.lat
             placeToSave.lng = +placeToSave.lng
             places.push(placeToSave);
+            EventBusService.$emit('changePlacesCount');                                            
             deleteMarker()
         }
         addMarker({ lat: placeToSave.lat, lng: placeToSave.lng }, placeToSave.name, placeToSave)
@@ -69,6 +70,7 @@ function deletePlace(placeId) {
     return new Promise((resolve, reject) => {
         deleteMarker(placeIdx)
         places.splice(placeIdx, 1);
+        EventBusService.$emit('changePlacesCount');        
         resolve(places);
     });
 }
@@ -151,6 +153,7 @@ function deleteMarker(placeIdx) {
     else {
         gMarkers[placeIdx].setMap(null)
         gMarkers.splice(placeIdx, 1)
+        
     }
 }
 
