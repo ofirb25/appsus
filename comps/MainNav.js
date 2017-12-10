@@ -12,10 +12,8 @@ export default {
     <span></span>
     <span></span>
     <span></span>
-  </label>
-
+    </label>
     </div>
-
   </div>
 
   <div id="main-nav" class="navbar-menu">
