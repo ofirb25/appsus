@@ -11,7 +11,7 @@ export default {
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div @click="isDDActive = !isDDActive" class="dropdown-content">
             <router-link tag="a" :to="'/notes/'+ note.id + '/details'" class="dropdown-item">
-                <span class="fa fa-arrows-alt"></span>
+                <span class="fa fa-search-plus"></span>
             </router-link>
             <router-link :to="'/notes/'+ note.id + '/edit'" class="dropdown-item">
                 <span class="fa fa-pencil"></span>

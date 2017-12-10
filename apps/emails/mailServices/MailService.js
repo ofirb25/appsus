@@ -76,9 +76,16 @@ function getMailById(mailId) {
 
 function saveMail(mail) {
     return new Promise((resolve, reject) => {
-        mail.id = _getNextId()
-        mails.unshift(mail);
-        resolve(mail)
+        if (mail.id) {
+            let mailIdx = mails.findIndex(currMail => {
+                return currMail.id === mail.id
+            })
+            mails.splice(mailIdx, 1, mail)
+        } else {
+            mail.id = _getNextId()
+            mails.unshift(mail);
+        }
+        resolve(mail)        
     });
 };
 

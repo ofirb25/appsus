@@ -30,3 +30,18 @@
     font-size: 1.4em;
     color: rgb(68, 68, 68)   
 }
+
+@media screen and (max-width:600px) {
+    .search-place {
+        top:100px;
+        width: 80vw;
+        right:10vw;
+    }
+    .my-location-button {
+        top:150px;
+        right:10vw;
+    }
+    [title="Show street map"],[title="Show satellite imagery"],[title="Toggle fullscreen view"] {
+        display: none
+    }
+}

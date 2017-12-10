@@ -18,7 +18,7 @@ export default {
                 enter-active-class="animated fadeInDown" 
                 leave-active-class="animated bounceOutRight">
                     <email-details v-if="selectedMail" :mail="selectedMail"
-                    @deleteMail="deleteMail" @markUnread="markUnread"></email-details>
+                    @deleteMail="deleteMail" @sendMail="sendMail" @markUnread="markUnread"></email-details>
                 </transition>
                 
             </div>

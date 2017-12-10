@@ -22,15 +22,17 @@ export default {
         </div>        
     </div>
     <section class="apps">
-        <div class="app-wrapper">
-            <img src="assets/mail.png" alt="">
+    <div class="app-wrapper">
+    <img src="assets/location.png" alt="">
         </div>
+
         <div class="app-wrapper">
             <img src="assets/test.png" alt="">
         </div>
         <div class="app-wrapper">
-                <img src="assets/location.png" alt="">
-        </div>
+        <img src="assets/mail.png" alt="">
+    </div>
+
     </section>
 </section>
 `
