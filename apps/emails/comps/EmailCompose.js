@@ -1,4 +1,4 @@
-import MailService from '../mailservices/MailService.js';
+import MailService from '../mailServices/MailService.js';
 
 export default {
     template: `
