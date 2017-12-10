@@ -2,7 +2,7 @@ import MailService from '../mailServices/MailService.js';
 
 export default {
     template: `
-    <div class="card">
+    <div class="card compose-mail">
         <header class="card-header">
             <div class="card-header-title">
                 <div class="control has-icons-left has-icons-right" v-if="inputMode">
