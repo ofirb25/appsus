@@ -1,3 +1,4 @@
+import EventBusService from '../../../services/EventBusService.js';
 import NotesService from '../apps/keeper/services/note.service.js'
 import MailService from '../apps/emails/mailServices/MailService.js';
 import PlacesService from '../apps/places/placesServices/PlacesService.js';
@@ -40,6 +41,21 @@ export default {
     }
   },
   created() {
-    MailService.filterUnread().then(filteredMails =>this.mailsCount = filteredMails.length)    
+    MailService.filterUnread().then(filteredMails =>this.mailsCount = filteredMails.length)
+    EventBusService.$on('changeMailsCount', this.editMailNum);
+    EventBusService.$on('changePlacesCount', this.changePlacesCount);
+    EventBusService.$on('changeNotesCount', this.changeNotesCount);
+    
+  },
+  methods: {
+    editMailNum() {
+      MailService.filterUnread().then(filteredMails =>this.mailsCount = filteredMails.length)  
+    },
+    changeNotesCount() {
+      this.notesCount = NotesService.notes.length  
+    },
+    changePlacesCount() {
+      this.placesCount = PlacesService.places.length  
+    }
   }
 }

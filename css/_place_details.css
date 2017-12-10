@@ -60,6 +60,16 @@
     margin-bottom: 12px;
 }
 
+.replay-button {
+    padding: 15px 13px;
+    margin-right: 60px;
+}
+
+.replay-button:hover {
+    background-color: rgb(110, 211, 211)
+}
+
+
 @media screen and (max-width:600px) {
     .card.place-details {
         width: 100vw;
