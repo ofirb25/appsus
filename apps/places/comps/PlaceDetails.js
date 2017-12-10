@@ -17,7 +17,7 @@ export default {
         <div class="media">
             <div class="media-left">
                 <figure class="image is-48x48" v-if="!onEditMode">
-                    <img :src="place.tagIcon" alt="Placeholder image">
+                    <img :src="'assets/marker-icons/'+place.tag+'.png'" :alt="place.tag">
                 </figure>
             </div>
             <div class="media-content">

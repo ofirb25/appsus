@@ -60,8 +60,8 @@ function savePlace(placeToSave) {
             placeToSave.lng = +placeToSave.lng
             places.push(placeToSave);
             deleteMarker()
-            addMarker({ lat: placeToSave.lat, lng: placeToSave.lng }, placeToSave.name, placeToSave)
         }
+        addMarker({ lat: placeToSave.lat, lng: placeToSave.lng }, placeToSave.name, placeToSave)
         resolve(placeToSave)
     });
 };
@@ -74,6 +74,7 @@ function deletePlace(placeId) {
         resolve(places);
     });
 }
+
 
 function getPlaceIdx(placeId) {
     return places.findIndex(place => place.id === placeId)
@@ -94,8 +95,7 @@ function emptyPlace() {
         photos: ['https://bulma.io/images/placeholders/1280x960.png'],
         lat: '',
         lng: '',
-        tag: '',
-        tagIcon: 'assets/marker-icons/food.svg'
+        tag: 'fun',
     }
 }
 
@@ -112,14 +112,30 @@ function displayMap(locationObj) {
         addMarker({ lat: place.lat, lng: place.lng }, place.name, place)
     });
 }
+var gSelectedMarkerIdx = null;
 
 function addMarker(pos, title, place) {
     let marker = new google.maps.Marker({
         position: pos,
-        title: title
+        title: title,
+        icon: place ? {
+            url: `assets/marker-icons/${place.tag}.png`,
+            scaledSize: new google.maps.Size(20, 20)
+        } : ''
     });
+    
     marker.setMap(gMap);
     marker.addListener('click', function () {
+        //get marker idx
+        var markerIdx = getPlaceIdx(place.id);
+    
+        if (gSelectedMarkerIdx !== null) {
+            gMarkers[gSelectedMarkerIdx].setIcon(`assets/marker-icons/${place.tag}.png`)
+        }
+        gSelectedMarkerIdx = markerIdx;
+        gMarkers[gSelectedMarkerIdx].setIcon(`assets/marker-icons/marker.png`)
+        //set marker as selected
+        gMarkers
         EventBusService.$emit('changeSelected', place);
     });
     gMarkers.push(marker)
@@ -149,11 +165,6 @@ function getUserLocation() {
     })
 }
 
-function getMarkerImg(placeTag) {
-    var markers = {
-        fun: 'assets/marker-icons/fun.png}'
-    }
-}
 function getLocation(query) {
     return fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${query}&key=AIzaSyB6ZAQiNEXagLdD5SAJNtDjWmItieR5uVQ`)
         .then(res => res.json())

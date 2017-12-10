@@ -12,7 +12,10 @@
     font-size: 1.5em;
     text-align: center
 }
-
+.place-details .image.is-48x48 {
+    /* width:25px;
+    height:auto */
+}
 .details-selectors * {
     margin-left: 10px;
     cursor: pointer;
