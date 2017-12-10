@@ -216,10 +216,7 @@ export default {
     addMarker,
     deleteMarker,
     setMarker,
-<<<<<<< HEAD
-    places
-=======
+    places,
     getWeather
->>>>>>> d65228a8b9fcb313e59e342eca1e377a9a67188f
 }
 
