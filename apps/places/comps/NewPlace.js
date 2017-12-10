@@ -37,7 +37,7 @@ export default {
       <div class="field">
           <div class="file is-boxed">
               <label class="file-label">
-                <input class="file-input" type="file" name="resume" >
+                <input class="file-input" type="file" name="resume">
                 <span class="file-cta">
                   <span class="file-icon">
                     <i class="fa fa-upload"></i>

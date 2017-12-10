@@ -20,10 +20,14 @@ export default {
                     <img :src="place.tagIcon" alt="Placeholder image">
                 </figure>
             </div>
-            <div class="media-content">
-                <p class="title is-4" :contenteditable="onEditMode" @input="tempUpdatePlace($event, 'name')" autofocus>{{place.name}}</p>
+            <div class="media-content" v-if="!onEditMode">
+                <p class="title is-4">{{place.name}}</p>
             </div>
         </div>
+        <div class="media-content" v-if="onEditMode">
+            <input class="hideInput place-name-title" v-model="updatedPlace.name" value="place.name"/>
+        </div>
+
         <div class="field" v-if="onEditMode">
             <p class="control has-icons-left">
                 <span class="select">
@@ -39,9 +43,12 @@ export default {
                 </span>
             </p>
         </div>
-        <div class="content" :contenteditable="onEditMode" @input="tempUpdatePlace($event, 'description')">
+        <div class="content" v-if="!onEditMode"">
             {{place.description}}
             <br>
+        </div>
+        <div class="media-content" v-if="onEditMode">
+            <textarea class="hideInput" v-model="updatedPlace.description" value="place.description" rows="9"></textarea>
         </div>
         <div class="field is-grouped is-clearfix">
         <span v-if="!onEditMode" class="icon has-text-info place-details-icon" @click="switchToEdit">
@@ -57,7 +64,7 @@ export default {
             </div>
             <router-link :to="'/places/place/'+place.id">
                 <div class="control">
-                    <button class="button is-text">Cancel</button>
+                    <button class="button is-text" @click="cancelPlace">Cancel</button>
                 </div>
             </router-link>
         </div>
@@ -90,7 +97,11 @@ export default {
     },
     deletePlace(placeId) {
       this.$emit('deletePlace', placeId)      
+    },
+    cancelPlace() {
+        
     }
+    
   },
   computed: {
     onEditMode() {

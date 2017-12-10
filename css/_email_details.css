@@ -28,6 +28,7 @@
     text-decoration: underline
 }
 
+
 @media screen and (max-width:768px){
     .card.mail-details {
         /* height: 100vh; */
