@@ -151,5 +151,6 @@ export default {
     getNoteById,
     deleteNote,
     sortByTime,
-    sortByPriority
+    sortByPriority,
+    notes
 }

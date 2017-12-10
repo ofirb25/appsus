@@ -5,7 +5,7 @@ export default {
         <p class="control has-icons-left">
           <input ref="auto" class="input map-input" 
           type="text" placeholder="Search a place"
-           v-model="query" @change="changeLocation" @input="doAutocomplete($event)">
+           v-model="query" @change="changeLocation" @keyup.enter="changeLocation" @input="doAutocomplete($event)">
           <span class="icon is-small is-left">
             <i class="fa fa-search"></i>
           </span>

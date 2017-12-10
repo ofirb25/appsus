@@ -7,8 +7,7 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
-    margin: 0px 40px;
+    margin: 0px 50px;
 }
 
 .nav-container{
@@ -16,11 +15,70 @@
     width: 100vw
 }
 
-a.nav-item {
-    margin-left: 40px;
+.nav-item {
+    padding: 20px 25px;
     color: white;
+    transition: 0.2s;
+    padding-bottom: 0px
 }
-
+.nav-menu {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+.logo-img:hover {
+    background-color: rgb(49, 49, 49);
+    
+}
 .nav-logo {
     padding: 0px;
+}
+
+.nav-item.is-active {
+    background-color: rgb(29, 29, 29);
+}
+
+.nav-item:hover {
+    color: white;
+    background-color: rgb(29, 29, 29);
+}
+.nav-home {
+    padding-bottom: 20px;
+}
+.nav-item img {
+    width: 35px;
+}
+
+.nav-item div {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(255, 27, 27);
+    position: relative;
+    top: -50px;
+    left: 28px;
+    border-radius: 50%;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: all 0.1s
+}
+
+.nav-item:hover div {
+    transform: scale(1.1);
+    font-size: 1.1em
+}
+
+@media screen and (max-width:600px) {
+    .nav-logo {
+        display: none;
+    }
+    .nav {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+    }    
 }

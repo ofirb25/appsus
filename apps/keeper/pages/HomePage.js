@@ -13,12 +13,12 @@ export default {
             <note-details  v-if="showDetailsMode"></note-details>
         </transition>
             <router-link v-if="!onAddMode" to="/notes/add" tag="button" class="add-note button is-danger">
-                <span class="fa fa-plus"></span>
+                <span class="fa fa-pencil"></span>
             </router-link>                                                
             <div class="controls">
                   <div class="buttons sorting has-addons">
-                      <span class="button" @click="sortTodos('priority')"title="Sort by priority"><i class="fa fa-sort-amount-desc" aria-hidden="true" ></i></span>
-                      <span class="button" @click="sortTodos('time')" title="Sort by date"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></span>
+                      <span class="button note-control" @click="sortTodos('priority')"title="Sort by priority"><i class="fa fa-sort-amount-desc" aria-hidden="true" ></i></span>
+                      <span class="button note-control" @click="sortTodos('time')" title="Sort by date"><i class="fa fa-sort-numeric-asc" aria-hidden="true"></i></span>
                   </div>
             </div>
             <section class="notes">

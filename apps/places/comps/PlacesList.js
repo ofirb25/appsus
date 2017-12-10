@@ -6,7 +6,7 @@ export default {
             <div class="panel-block">
             <p class="control has-icons-left">
             <input class="input is-small" type="text" @input="searchPlace" 
-            placeholder="search" v-model="searchQuery">
+            placeholder="Search in list" v-model="searchQuery">
             <span class="icon is-small is-left">
                 <i class="fa fa-search"></i>
             </span>

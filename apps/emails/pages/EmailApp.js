@@ -27,7 +27,7 @@ export default {
             <div class="column" v-else></div>
         </div>
         <router-link v-if="!onAddMode" to="/mails/compose" tag="button" class="add-note button is-danger">
-            <span class="fa fa-plus"></span>
+            <span class="fa fa-pencil"></span>
         </router-link>                                                
 
     </section>

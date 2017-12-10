@@ -102,6 +102,11 @@
 .controls {
     display:flex;
     justify-content: space-between;
+    margin-left: 4%;
+}
+.note-control {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 .add-note {
     height:40px;

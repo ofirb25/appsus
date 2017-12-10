@@ -178,6 +178,6 @@ export default {
     searchMail,
     filterUnread,
     emptyMail,
-    saveMail
+    saveMail,
 }
 

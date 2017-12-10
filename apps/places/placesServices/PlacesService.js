@@ -8,8 +8,7 @@ var places = [
         photos: ['https://www.nycgo.com/images/venues/152/times-square-at-night_jen-davis_121__x_large.jpg', 'http://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1475261147/times-square-nyc-food-EAT0916.jpg?itok=GpQTB9qQ'],
         lat: 40.7589,
         lng: -73.9851,
-        tag: 'fun',
-        tagIcon: 'assets/marker-icons/food.svg'
+        tag: 'shopping',
     },
     {
         id: 102,
@@ -19,7 +18,6 @@ var places = [
         lat: 40.7484,
         lng: -73.9857,
         tag: 'fun',
-        tagIcon: 'assets/marker-icons/food.svg'
     },
 ]
 
@@ -204,6 +202,7 @@ export default {
     searchPlace,
     addMarker,
     deleteMarker,
-    setMarker
+    setMarker,
+    places
 }
 
