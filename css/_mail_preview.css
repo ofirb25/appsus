@@ -50,3 +50,7 @@
 .mail-active {
     border-left: 3px solid rgb(112, 112, 112)
 }
+
+.mail-content {
+    width: 100%;
+}

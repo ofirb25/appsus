@@ -77,7 +77,7 @@ function getMailById(mailId) {
 function saveMail(mail) {
     return new Promise((resolve, reject) => {
         mail.id = _getNextId()
-        mails.push(mail);
+        mails.unshift(mail);
         resolve(mail)
     });
 };

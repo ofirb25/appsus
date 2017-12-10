@@ -131,8 +131,8 @@ function deleteMarker(placeIdx) {
         gMarkers.splice(gMarkers.length - 1, 1)
     }
     else {
-        gMarkers[markerIdx].setMap(null)
-        gMarkers.splice(markerIdx, 1)
+        gMarkers[placeIdx].setMap(null)
+        gMarkers.splice(placeIdx, 1)
     }
 }
 

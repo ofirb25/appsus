@@ -8,7 +8,6 @@ export default {
                   </div>
         <div class="mail-content" >
         <span class="preview-time is-pulled-right">{{timeAgo}}</span>
-        
         <div class="mail-title">
             <div class= "mail-sender-name"> {{mail.sender}} </div>
            {{mail.title}}
