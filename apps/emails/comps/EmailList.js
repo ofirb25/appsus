@@ -31,7 +31,7 @@ export default {
     </p>
     <div v-if="mails.length" class="preview-container">
     <transition-group name="flip-list" tag="section">
-        <email-preview  v-for="mail in mails" :mail="mail" :selectedMailId="selectedMailId"
+        <email-preview  v-for="mail in mails" :mail="mail"
         @updateSelected="updateSelected" :key="mail.id">
         </email-preview>
         </transition-group>    

@@ -22,7 +22,7 @@ export default {
                 <span @click="deleteMail(mail.id)" class="icon has-text-info trash-container">
                     <i class="fa fa-trash-o fa-lg details-trash"></i>
                 </span>
-                <p @click="markUnread(mail.id)" class="mark-unread">Mark as unread</p>
+                <p @click="markUnread(mail.id)">Mark as unread</p>
                 </div>
             </div>
         </div>

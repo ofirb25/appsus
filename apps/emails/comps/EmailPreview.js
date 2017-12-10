@@ -1,6 +1,6 @@
-export default {
-    template: `
-<section @click="readMail" :class="{'mail-active' : isActive}" class="mail-prev">
+export default { 
+template : `
+<section @click="readMail">
     <a class="mail-preview panel-block"
      :class="{'not-read':!mail.isRead}" >
             <div class="mail-avatar-wrapper">
@@ -21,30 +21,25 @@ export default {
 </div>
 </section>
 `,
-    methods: {
-        readMail() {
-            this.$emit('updateSelected', this.mail.id)
-        }
-    },
-    data() {
-        return {
-            timeAgo: null
-        }
-    },
-    computed: {
-        shortTxt() {
-            return this.mail.text.substring(0, 120) + '...'
-        },
-        isActive() {
-            return this.selectedMailId === this.mail.id
-        }
-
-    },
-    created() {
-        this.timeAgo = moment(this.mail.time).format("MMM Do");
-    },
-    props: {
-        mail: Object,
-        selectedMailId: Number
+methods : {
+    readMail(){
+        this.$emit('updateSelected',this.mail.id)
     }
+},
+data () {
+    return {
+       timeAgo : null
+    }
+},
+computed : {
+    shortTxt(){
+        return this.mail.text.substring(0,120) + '...'
+    }
+},
+created () {
+    this.timeAgo =moment(this.mail.time).format("MMM Do");
+},
+props : {
+    mail : Object
+}
 }

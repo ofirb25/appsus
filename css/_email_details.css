@@ -22,12 +22,6 @@
     margin: 15px;
 }
 
-.mark-unread {
-    cursor: pointer;
-    font-size: .9em;
-    text-decoration: underline
-}
-
 @media screen and (max-width:768px){
     .card.mail-details {
         /* height: 100vh; */

@@ -55,12 +55,11 @@ function savePlace(placeToSave) {
             places.splice(placeIdx, 1, placeToSave)
         }
         else {
+            console.log(placeToSave)
             placeToSave.id = _getNextId();
             placeToSave.lat = +placeToSave.lat
             placeToSave.lng = +placeToSave.lng
             places.push(placeToSave);
-            deleteMarker()
-            addMarker({ lat: placeToSave.lat, lng: placeToSave.lng }, placeToSave.name, placeToSave)
         }
         resolve(placeToSave)
     });
@@ -69,7 +68,6 @@ function savePlace(placeToSave) {
 function deletePlace(placeId) {
     var placeIdx = getPlaceIdx(placeId)
     return new Promise((resolve, reject) => {
-        deleteMarker(placeIdx)
         places.splice(placeIdx, 1);
         resolve(places);
     });
@@ -101,7 +99,6 @@ function emptyPlace() {
 
 
 var gMap;
-var gMarkers = []
 function displayMap(locationObj) {
     // Create a map object and specify the DOM element for display.
     gMap = new google.maps.Map(document.querySelector('#map'), {
@@ -109,31 +106,18 @@ function displayMap(locationObj) {
         zoom: 12
     });
     places.forEach(place => {
-        addMarker({ lat: place.lat, lng: place.lng }, place.name, place)
+        var marker = new google.maps.Marker({
+            position: { lat: place.lat, lng: place.lng },
+            map: gMap,
+            title: place.name,
+            // icon : 'assets/marker-icons/food.svg'
+        });
+        marker.addListener('click', function () {
+            EventBusService.$emit('changeSelected', place);
+            // this.$router.push('/places/place/'+place.id);
+        });
     });
-}
 
-function addMarker(pos, title, place) {
-    let marker = new google.maps.Marker({
-        position: pos,
-        title: title
-    });
-    marker.setMap(gMap);
-    marker.addListener('click', function () {
-        EventBusService.$emit('changeSelected', place);
-    });
-    gMarkers.push(marker)
-}
-
-function deleteMarker(placeIdx) {
-    if (!placeIdx && placeIdx !== 0) {
-        gMarkers[gMarkers.length - 1].setMap(null)
-        gMarkers.splice(gMarkers.length - 1, 1)
-    }
-    else {
-        gMarkers[markerIdx].setMap(null)
-        gMarkers.splice(markerIdx, 1)
-    }
 }
 
 function getUserLocation() {
@@ -166,8 +150,7 @@ function searchPlace(query) {
     var results = []
     return new Promise((resolve, reject) => {
         results = places.filter(place => {
-            return place.name.toLowerCase().includes(query.toLowerCase())
-        });
+            return place.name.toLowerCase().includes(query.toLowerCase())});
         if (results.length) {
             resolve(results)
         }
@@ -186,8 +169,6 @@ export default {
     getUserLocation,
     getLocation,
     getMap,
-    searchPlace,
-    addMarker,
-    deleteMarker
+    searchPlace
 }
 
