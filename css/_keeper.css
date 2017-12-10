@@ -118,6 +118,17 @@
     bottom: 30px;
     right: 50px;
 }
+.dropdown .dropdown-menu  {
+    display: block;
+    opacity: 0;
+    transform-origin: top ;
+    transform: scaleY(0);
+    transition: all .3s
+}
+.dropdown.is-active .dropdown-menu {
+    opacity:1;
+    transform: scaleY(1);
+}
 @media screen and (max-width : 740px) {
     .card.grid .card-content {
         display: none;

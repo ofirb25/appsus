@@ -2,8 +2,8 @@ import PlaceService from '../apps/places/placesServices/PlacesService.js';
 
 export default {
     template: `
-<section class="home">
-    <div class="now-info">
+<section class="home" v-if="location">
+    <div class="now-info" v-if="location">
             <h1 class="title is-3">Welcome To Appsus</h1>
             <div class="now-content">
 
@@ -22,19 +22,20 @@ export default {
         </div>        
     </div>
     <section class="apps">
-    <div class="app-wrapper">
-    <img src="assets/location.png" alt="">
-        </div>
-
-        <div class="app-wrapper">
+        <router-link to="/places" tag="div" class="app-wrapper">
+            <img src="assets/location.png" alt="">
+        </router-link>
+        <router-link to="/notes" tag="div" class="app-wrapper">
             <img src="assets/test.png" alt="">
-        </div>
-        <div class="app-wrapper">
-        <img src="assets/mail.png" alt="">
-    </div>
-
+        </router-link>
+        <router-link to="/mails" tag="div" class="app-wrapper">
+            <img src="assets/mail.png" alt="">
+        </router-link>
     </section>
 </section>
+<div v-else style="text-align:center;margin-top:30px;">
+        <img  src="assets/loader.gif" alt="">
+    </div>
 `
     , data() {
         return {
