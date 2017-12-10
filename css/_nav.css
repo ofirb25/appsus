@@ -31,6 +31,15 @@
     display: none
 }
 
+.nav {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+a.nav-item {
+    margin-left: 40px;
+}
+
 .main-nav-icon span:nth-child(1) {
     top: 0px;
 }
