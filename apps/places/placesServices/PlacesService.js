@@ -188,6 +188,19 @@ function searchPlace(query) {
     })
 }
 
+function getWeather() {
+    var userPos;
+    return getUserLocation()
+    .then(pos=> {
+        userPos = {lat:pos.coords.latitude,lng:pos.coords.longitude};
+        console.log(userPos)
+        return fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${userPos.lat}&lon=${userPos.lng}&appid=fb2824293153f132b2a8c3356c8001a4&units=metric`)
+        .then(res => res.json())
+        .catch(err => console.log('err', err));
+    });
+   
+}
+
 
 export default {
     getPlaces,
@@ -203,6 +216,10 @@ export default {
     addMarker,
     deleteMarker,
     setMarker,
+<<<<<<< HEAD
     places
+=======
+    getWeather
+>>>>>>> d65228a8b9fcb313e59e342eca1e377a9a67188f
 }
 
